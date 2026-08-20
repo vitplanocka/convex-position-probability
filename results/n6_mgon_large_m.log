@@ -7,10 +7,10 @@ Traceback (most recent call last):
   File "/usr/lib/python3.12/multiprocessing/pool.py", line 48, in mapstar
     return list(map(*args))
            ^^^^^^^^^^^^^^^^
-  File "/home/vit-planocka/math/convex-position-probability/src/extend_a4.py", line 15, in one
+  File "/home/user/math/convex-position-probability/src/extend_a4.py", line 15, in one
     _, a = TC.two_chord_polygon(Vf, 36, 36, 6, q, workers=3, grade=1, dtname="ld")
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/vit-planocka/math/convex-position-probability/src/n6_twochord_polygon.py", line 391, in two_chord_polygon
+  File "/home/user/math/convex-position-probability/src/n6_twochord_polygon.py", line 391, in two_chord_polygon
     with mp.Pool(workers, initializer=_init,
          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "/usr/lib/python3.12/multiprocessing/context.py", line 119, in Pool
@@ -32,7 +32,7 @@ AssertionError: daemonic processes are not allowed to have children
 The above exception was the direct cause of the following exception:
 
 Traceback (most recent call last):
-  File "/home/vit-planocka/math/convex-position-probability/src/extend_a4.py", line 28, in <module>
+  File "/home/user/math/convex-position-probability/src/extend_a4.py", line 28, in <module>
     res = pool.map(one, ms)
           ^^^^^^^^^^^^^^^^^
   File "/usr/lib/python3.12/multiprocessing/pool.py", line 367, in map

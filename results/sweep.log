@@ -1,4 +1,4 @@
-2026-08-18 23:00:08 sweep start (host ZEBSERVICECENTERPTI01, nproc 28)
+2026-08-18 23:00:08 sweep start (host <host>, nproc 28)
 2026-08-18 23:00:10 xcheck disk n=5: 0.3564385 True
 2026-08-18 23:00:15 xcheck disk n=6: 0.1341405 True
 2026-08-18 23:00:26 xcheck disk n=7: 0.039023 True
