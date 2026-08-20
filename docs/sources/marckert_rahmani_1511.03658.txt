@@ -1,0 +1,1745 @@
+Around Sylvester’s question in the plane
+Jean-François Marckert
+CNRS, LaBRI, Université Bordeaux
+351 cours de la Libération
+33405 Talence cedex, France
+
+arXiv:1511.03658v1 [math.PR] 11 Nov 2015
+
+Abstract
+Pick n points Z0 , ..., Zn−1 uniformly and independently at random in a compact convex set
+H with non empty interior of the plane, and let QnH be the probability that the Zi ’s are the
+vertices of a convex polygon. Blaschke 1917 [1] proved that Q4T ≤ Q4H ≤ Q4D , where D is a disk
+and T a triangle. In the present paper we prove Q5T ≤ Q5H ≤ Q5D . One of the main ingredients
+of our approach is a new formula for QnH which permits to prove that Steiner symmetrization
+does not decrease Q5H , and that shaking does not increases it (this is the method Blaschke used
+in the n = 4 case). We conjecture that the new formula we provide will lead in the future to
+the complete proof that QnT ≤ QnH ≤ QnD , for any n.
+
+1
+
+Introduction
+
+Notations and convention. All the random variables (r.v.) in the paper are assumed to be
+defined on a common probability space (Ω, A, P). The expectation is denoted by E. The plane will
+be seen as R2 or as C and we will pass from the real notation (e.g. (x, y)) to the complex one (e.g.
+ρeiθ or x + iy) without any warning. For any n ≥ 1, any generic variable name z, z[n] stands for
+the n-tuple (z0 , . . . , zn−1 ) and z{n} for the set {z0 , . . . , zn−1 }. The set of compact convex subsets
+of R2 with non empty interior is denoted CCS. For any H ∈ CCS and any n ≥ 0, PnH is the notation
+for the law of Z[n], a sequence of n i.i.d. points taken under the uniform distribution over H. Last,
+we denote by Ja, bK := [a, b] ∪ Z.
+
+1.1
+
+The new result
+
+A n-tuple of points x[n] of the plane is said to be in a convex position if x{n} is the vertex set
+of a convex polygon. Denote by CPn the set of n-tuples x[n] in a convex position. Finally let
+QnH := PnH (CPn ) = P(Z[n] ∈ CPn ),
+where Z[n] is PnH distributed. The aim of this paper is to prove the following theorem:
+Theorem 1. For any H ∈ CCS,
+11/36 = Q5T ≤ Q5H ≤ Q5D = 1 − 305/(48π)2 ,
+
+(1)
+
+with equality holds for the left inequality only when H is a triangle, and in the right one, only when
+H is an ellipse.
+
+1
+
+Blaschke [1] proved in 1917 that for any H ∈ CCS,
+2/3 = Q4T ≤ Q4H ≤ Q4D = 1 − 35/(12π)2 ,
+
+(2)
+
+with the equality cases are, for the left inequality only when H is a triangle, and for the right one,
+only when H is an ellipse. Roughly, the method of Blaschke relies on two ingredients:
+A. there is an “algebraic formula” for Q4H :
+Q4H = 1 − 4E(Area(Z0 , Z1 , Z2 )) = 1 − 2E(| det(Z1 − Z0 , Z2 − Z0 )|)
+
+(3)
+
+where Area(Z[3]) is the non negative area of the triangle Z[3] under P3H (since 4 points are not in
+a convex position, if one of them lies in the triangle formed by the 3 other ones).
+B. Steiner symmetrization and shaking (see definitions below) have the following property:
+a. If H Sym (resp. H Sha ) are obtained from H by a Steiner symmetrization (resp. a shaking)
+with respect to the x-axis, then
+Q4H Sym ≥ Q4H , Q4H Sha ≤ Q4H ,
+
+(4)
+
+with equality only in some identified special cases;
+b. For any H0 ∈ CCS, there exists a sequence of lines (∆i , i ≥ 1), so that for Hi+1 obtained from
+Hi by Steiner symmetrization (resp. shaking) with respect to ∆i+1 , the sequence (Hn ) converges
+to a disk (resp. to a triangle) for the Hausdorff distance (see Klartag [4] and Campi, Colesanti and
+Gronchi [9] for modern and general treatments).
+Remark 2. Formula (4) is only needed for Steiner symmetrization and shaking with respect to the
+x-axis, since rotations conserve uniform distributions and convexity.
+In the present paper we use the same methodology. Hence, we need an “algebraic formula” for
+Q5H , and prove that it satisfies the analogous of B.a.:
+Theorem 3. For n = 4 and n = 5,
+QnH Sym ≥ QnH , QnH Sha ≤ QnH .
+
+(5)
+
+We will provide a slightly different proof than that of Blaschke for the case n = 4.
+Maybe this is the right place to discuss the presence of quotation marks around “algebraic
+formula” here. In fact the determinant is algebraic in the coordinates of the Zj0 s but (3) is more
+complex than this since it involves an absolute value, and an expectation. In the case n = 4, this
+expectation is a triple integral over H that could be as unpleasant as one could imagine.
+To circumvent this problem the integrals are not really directly compared. What are compared
+and some quantities under the integral signs: writing the integrals with respect to x[3], y[3], the
+coordinates of z[3], and integrating only partially, that is according to certain of these variables only
+(e.g. y[3]), keeping the integrals with respect to the other variables. This quantity “below a certain
+number of integral signs” has also an algebraic form, since when one integrates det(z1 − z0 , z2 − z0 )
+according to the variables y0 , y1 , y2 we still get an algebraic result, in fact a polynomial depending
+on the xi ’s and on the maximal and minimal ordinates of the points of H in each of the slices at
+2
+
+abscissas x0 , x1 and x2 . Of course, the fact that this is the absolute value of the determinant which
+matters, brings some extra complications.
+One of the main advances in the paper is a new “algebraic” formula for QnH (including Q4H )
+which avoids absolute values, and which is given in terms of n + 2 real integrals of a polynomial.
+The comparison of the polynomials appearing when computing QnH , QnH Sym and QnH Sha will give the
+expected result, when n = 4 and n = 5. We were not able to go further, because of the complexity
+of the involved polynomials.
+
+1.2
+
+Related results
+
+The problem of determining QnH goes back to a question (badly) posed by Sylvester [10]. Finally,
+the question was to show that the map H 7→ Q4H takes its maximum on CCS when H is a disk
+and its minimum when H is a triangle, Theorem finally proved by Blaschke [1] (see Pfeifer [7] for
+historical notes). Recently some advances have been made on the exact computations of QnH : Valtr
+[11, 12] showed that if S is a square (or a non flat parallelogram) and if T is a non flat triangle
+then, for n ≥ 1,
+ !2
+2n−2
+2n (3n − 3)!
+n−1
+n
+, QnT =
+.
+(6)
+QS =
+n!
+(n − 1)!3 (2n)!
+Buchta [2] goes further and gives an expression for Qn,m
+and Qn,m
+S
+T , the probability that m points
+exactly among the n random points are on the boundary of the convex hull. The author of the
+present paper gives a formula for QnD (and Qn,m
+D ) in the disk case [5].
+The literature concerning the question of the number of points on the convex hull for i.i.d.
+random points taken in a convex domain is huge. We won’t make a survey here but rather refer
+the reader to Reitzner [8] and Hug [3] to have an overview of the topic.
+As far as we know, Blaschke result has not been extended in the direction we propose here, but
+rather, in the multidimensional case, where o Blaschke [1] proved that
+d+2
+Qd+2
+K ≤ QBd ,
+
+for any K ∈ Kd ,
+
+(7)
+
+where Kd is the set of compact convex bodies in Rd with non empty interior, Bd is the unit ball
+d+2 (K) for any K ∈ K , where ∆ is the simplex in Rd is still
+in Rd . The inequality Qd+2
+d
+d
+∆d ≤ Q
+a conjecture. Milman & Pajor [6, Prop. 5.6] established that if it holds, then the hyperplane
+conjecture (or slicing problem) holds true: there exists a universal constant c > 0 such that for
+every d and for every convex body K of volume one in Rd there exists an hyperplane H such that
+|K ∩ H| ≥ c. This connection is another justification for our work since a right understanding of
+the 2-D case can be a step in the right direction.
+
+1.3
+
+Content of the paper
+
+Most of the paper is devoted to proving Theorem 3. In section 2, we recall what are Steiner
+symmetrization and shaking with respect to the x-axis. Take Z[n] under PnK for some K ∈ CCS,
+and let Zj = (Xj , Yj ). A property of the Steiner symmetrization and shaking with respect to the
+x-axis is that the distribution of the abscissas X[n] is the same when K is H, H Sym or H Sha .
+3
+
+We then prove the stronger Prop. 7 which asserts that Theorem 3 holds when we condition
+on X[n] = x[n] for any sequence x[n]. Conditional on X[n] = x[n], Zj is uniform in the vertical
+segment VK (xj ) = {(x, y) ∈ K, x = xj } for K depending on the case of interest. We then apply
+a “normalisation procedure” in Section 2.2, which amounts to sending the three collections of
+segments (VK (xj ), 0 ≤ j ≤ n − 1) for K ∈ {H, H Sym , H Sha } by three inversible affine maps which
+Sha
+Sym
+preserves verticality (see Defi. 10) onto three families of segments V , V , V
+so that the first
+(and also the last) segments of these families coincides. We then provide an algebraic formula for
+the probability hS0 , · · · , Sn−1 i that n independent random points Z[n] are in a convex position,
+where Zj is taken uniformly in the vertical segment Sj . In Lemma 14 we condition on the two Zj
+with maximum and minimum abscissas, say, z0 and zn−1 . Appears then that the remaining Zj
+are above or under the line (z0 , zn−1 ), and are uniform on the part of the segments Sj in which
+they lie. The structure which appears is that of two combs (Defi. 15), one above and one below
+the line (z0 , zn−1 ), with some random points on each tooth. In Prop. 16, the general formula for
+hS0 , · · · , Sn−1 i in terms of hCb[xj , `j ]1≤j≤m i which is the quantity relative to the probability that
+some random points taken on an orthogonal comb are in a convex position (where the tooth length
+and position are encoded by the [xj , `j ]’s) are given.
+Prop. 17 provides a combinatorial-like decomposition for hCb[xj , `j ]1≤j≤m i implying that this
+quantity is a rational fraction in the coordinates of the comb teeth extremities. Section 3 is devoted
+to ending the proof of Theorem 3 by optimizing these formulas when n = 4 and n = 5. In Section 4
+some additional elements on the algebraic structure of hS0 , · · · , Sn−1 i are given. We end by giving
+a “combinatorico-geometric” representation of hCb[xj , `j ]1≤j≤m i.
+
+2
+
+Proof of Theorem 3: preliminaries
+
+2.1
+
+Abscissas fibration
+
+A well known property which comes from that inversible affine transformations conserve convexity and uniformity, is the following fact:
+Lemma 4. For any inversible affine map A of R2 , for any H ∈ CCS, we have QnA(H) = QnH .
+A consequence of this is that we can prove Theorem 1 only for convex bodies with area 1.
+As represented on Fig. 4, for any H with area 1, denote by xmin (H) = min{x : (x, y) ∈ H} and
+xmax (H) = max{y : (x, y) ∈ H} the minimum and maximum abscissas of H and let,
+y x (H) := inf{y : (x, y) ∈ H},
+
+y x (H) := sup{y : (x, y) ∈ H}
+
+for x ∈ [xmin (H), xmax (H)]
+
+for x ∈ [xmin (H), xmax (H)].
+
+The width function WH : R → R is defined by
+
+
+WH (x) = y x (H) − y x (H) 1[xmin (H),xmax (H)] (x).
+The vertical segment intersecting H at abscissa x is denoted
+h
+i
+VH (x) = x + i y x (H), y x (H) .
+The law of the abscissa X of a uniform point (X, Y ) taken in H has density WH .
+4
+
+y x (H)
+Wx (H)
+
+Wx (H)
+
+H
+
+y x (H)
+Wx (H)
+
+H
+
+H Sha
+
+x
+
+H Sym
+x
+Wx (H)/2
+
+x
+
+xmax (H)
+
+xmin (H)
+
+H
+
+Figure 1: Steiner symmetrization and shaking with respect to the x-axis.
+
+Note 5. Instead of taking n points at random in H, in the sequel we will take N + 2 points
+at random! Of course for n = N + 2 this is equivalent, but it will be useful in our decompositions/recurrences to have a point with rank 0, and one with rank N + 1, to get simpler formula.
+Let Z[N + 2] be taken under PHN +2 and let (Xj , Yj ) be the coordinates of Zj in the plane.
+Consider τ the a.s. well defined permutation in the symmetric group S(J0, N + 1K) such that
+Xτ (0) ≤ · · · ≤ Xτ (N +1) .
+By symmetry, the permutation τ is uniform in S(J0, N + 1K) and independent
+from the set of values
+
+{Xj , 0 ≤ j ≤ N + 1}. The density of Xτ := Xτ (j) , 0 ≤ j ≤ N + 1 on RN +2 is
+
+
+N
++1
+Y
+
+fH (x[N + 2]) = (N + 2)! 
+
+
+WH (xj ) 1NDN +2 (x[N + 2])
+
+j=0
+
+where, for any n ≥ 1, NDn = {x[n] : x0 < · · · < xn−1 } is the set of non decreasing sequences with
+n elements. Conditional on (Xτ (j) , 0 ≤ j ≤ N + 1) = x[N + 2], the variables Zτ (0) , · · · , Zτ (N +1) are
+independent, and Zτ (j) is uniform on VH (xj ). We introduce a crucial object of the paper:
+Definition 6. Consider N + 2 (vertical or not) segments (S0 , · · · , SN +1 ) of the plane and U [N + 2]
+a N + 2-tuple of independent r.v. where Uj is uniform on Sj . We denote by
+S0 , · · · , SN +1 := P (U [N + 2] ∈ CPN +2 ),
+
+(8)
+
+the probability that the Uj ’s are in a convex position.
++2
+To compute QN
+H , one can condition on the value of Xτ , from what we see that
+Z
++2
+QN
+=
+VH (x0 ), · · · , VH (xN +1 ) fH (x[N + 2]) dx0 · · · dxN +1 .
+H
+NDN +2
+
+5
+
+(9)
+
+Consider H Sym and H Sha the convex bodies obtained from H by Steiner symmetrization and shaking
+with respect to the x-axis :
+H Sym = {(x, y) : xmin (H) ≤ x ≤ xmax (H), |y| ≤ WH (x)/2} ,
+
+H Sha = {(x, y) : xmin (H) ≤ x ≤ xmax (H), 0 ≤ y ≤ WH (x)} .
+
+Since the width functions WH , WH Sha and WH Sym coincide, it can be deduced that
+fH = fH Sha = fH Sym .
+
+(10)
+
+In view of (9), Theorem 1 appears to be a consequence of the following proposition:
+Proposition 7. For H ∈ CCS, N ∈ {2, 3}, and x[N + 2] ∈ NDN +2 ∩ [xmin (H), xmax (H)]N +2 ,
+VHSha (x0 ), · · · , VHSha (xN +1 ) ≤ VH (x0 ), · · · , VH (xN +1 ) ≤ VHSym (x0 ), · · · , VHSym (xN +1 ) .
+
+(11)
+
+Note 8. In fact, to get Theorem 1, we need also to treat the equality case. In fact, a consequence
+of our proof below, is that equality (11) holds iff :
+– for the left one, if the bottom (or top) points of all segments VH (xj ) are aligned,
+– for the right one, if the VHSym (xj ) are symmetric with respect to x-axis.
+Since to get QnH we integrate afterward against fH (x[N + 1]), we have QnH Sym = QnH (resp. QnH Sha =
+QnH ) only when H is symmetric with respect to x-axis (resp. x 7→ y H (x) or x 7→ y H (x) are linear).
+By standard arguments, this additional details suffices to prove Theorem 1 from Prop. 7.
+To prove Proposition 7, we will need several steps. First, we will transport the segments of
+interest at a more favourable places in the plane.
+
+2.2
+
+Normalized version of the problem
+
+Even if the situation is a bit different to that of Lemma 4, it is easy to see that again,
+Lemma 9. For any inversible affine map A of the plane, any sequence of segments S[N + 2],
+S0 , · · · , SN +1 = A(S0 ), · · · , A(SN +1 ) .
+We will use affine maps that preserves verticality:
+Definition 10. An affine transformation A of the plane is said to preserve verticality, if A(x, y) −
+A(x, y 0 ) = (0, y − y 0 ) for any x, y, y 0 . The set of inversible such maps is denoted PV.
+Any A ∈ PV is an affine map of the form A(x, y) = (c1 + c2 x, y + c3 x + c4 ) for some c1 , c2 , c3 , c4
+(a) (a)
+and c2 6= 0. Take two pairs of points pair(a) := (z0 , z1 ), for a ∈ {0, 1}. There is a unique element
+(a) (a)
+A ∈ PV such that A(pair(0) ) = pair(1) as soon as, for a ∈ {0, 1}, both points z1 , z0 are not on the
+same vertical line.
+By three affine maps preserving verticality, we send the three families of segments appearing in
+(11) onto three families of segments having the same extreme segments:
+6
+
+Definition 11. Let S[N + 2] be a sequence of N + 2 vertical segments at successive non decreasing
+abscissas x[N + 2] ∈ NDN +2 . We call normalizing map of S[N + 2] the map A ∈ PV (depending
+on S[N + 2]) which sends the middle m(S0 ) of S0 at 0 and the middle m(SN +1 ) of SN +1 at 1 :
+A(x + iy) = h(x) + i(y − m(S0 ) − (m(SN +1 ) − m(S0 ))h(x)),
+for h(x) = (x − x0 )/(xN +1 − x0 ). We call the sequence of segments (A(Sj ), 0 ≤ j ≤ N + 1), the
+normalized version of S[N + 2]. We finally call Normal the map which sends a sequence of segments
+onto its normalized version (see illustration on Fig. 2).
+
+H
+H Sha
+H Sym
+x0
+
+x̄0
+
+xm+1
+
+x̄m+1
+
+x0
+
+xm+1
+
+x0
+
+xm+1
+
+x̄0
+
+x̄m+1
+
+x̄0
+
+x̄m+1
+
+Figure 2: Steiner symmetrization and shaking with respect to the x-axis of the vertical blue lines,
+followed by normalisation of a family of segments. The trapezoid (discussed in point (d)) for each
+sequence of segments coincides (for the pictures at the bottom). Notice that the abscissas of the
+normalized sequences of segments start at x0 = 0, and end at xm+1 = 1. In the shaking case, the
+segments raise at the bottom line of the trapezoid.
+
+Since the three families of segments (VH (xj ), 0 ≤ j ≤ N + 1), (VH Sym (xj ), 0 ≤ j ≤ N + 1)
+and (VH Sha (xj ), 0 ≤ j ≤ N + 1) possess segments at the same abscissas with the same length,
+but with different ordinate, normalisation keeps this fact. After normalisation the new abscissas
+are xj = h(xj ), with x0 = 0, xN +1 = 1 (see Fig. 2), and the first segment v0 and vN +1 the
+last one of each family coincide. Consider Γ the trapezoid with sides v0 , vN +1 . Its top side is
+TL := {(x, L(x)) : x ∈ [0, 1]} and its bottom side is TL := {(x, −L(x)) : x ∈ [0, 1]} where L(x) :=
+(WH (x0 ) + (WH (xN +1 ) − WH (x0 ))x)/2 (see again Fig. 2). Set Lj = L(xj ), λj = WH (xj )/2 − Lj ,
+and αj = y H (xj ) − Lj − λj (so that λ0 = λN +1 = α0 = αN +1 = 0).
+For a vector β[N + 2] such that β0 = 0, βN +1 = 0. Set
+V β[N +2] [N + 2] := (xj + i[−Lj − λj + βj , Lj + λj + βj ], j ∈ J0, N + 1K) .
+7
+
+(12)
+
+We call β[N + 2] the symmetry defect. The following Lemma whose proof is a simple exercise,
+gives a representation of the normal versions of the three families of segments of interest in terms
+of V β[N +2] [N + 2]: in the symmetric case β[N + 2] = 0[N + 2] (the null vector in RN +2 ), in the
+(normalized) shaking case, the symmetry defect β[N + 2] “is maximum”, the general case lying in
+between these extreme cases.
+Lemma 12. We have
+Normal(VH (xj ), 0 ≤ j ≤ N + 1) = V β[N +2] [N + 2],
+
+(13)
+
+[N + 2],
+
+(14)
+
+Normal(VH Sha (xj ), 0 ≤ j ≤ N + 1) = V λ[N +2] [N + 2].
+
+(15)
+
+Normal(VH Sym (xj ), 0 ≤ j ≤ N + 1) = V
+
+0[N +2]
+
+Let us examine a bit the possible symmetry defects. Consider the slope differences
+pj (λ) :=
+qj (β) :=
+
+∆λj
+∆λj+1
+−
+,
+∆xj
+∆xj+1
+∆βj
+∆βj+1
+−
+,
+∆xj
+∆xj+1
+
+j ∈ J1, N K
+
+(16)
+
+j ∈ J1, N K
+
+(17)
+
+for any j ∈ J1, N K,
+
+(18)
+
+(where ∆yj := yj − yj−1 ). They always satisfy
+pj (λ) ≥ 0, |qj (β)| ≤ pj (λ),
+λj ≥ |βj |
+
+for any j ∈ J0, N + 1K.
+
+(19)
+
+The set of symmetry defects compatible with λ[N + 2] is denoted by
+Compa(λ[N + 2]) = {β[N + 2] : |qj (β)| ≤ pj (λ), β0 = βN +1 = 0, |βj | ≤ λj }.
+
+(20)
+
+Since λ0 = λN +1 = 0, given some elements p = (pj , j ∈ J1, N K), one can find λ[N + 2] so that
+p = p(λ), and λ0 = λN +1 = 0 :
+PN
+λm =
+
+j=m pj (xj − xN +1 )(x0 − xm ) +
+
+Pm−1
+j=1
+
+xN +1 − x0
+
+pj (xm − xN +1 )(x0 − xj )
+
+, m ∈ J1, N K
+
+(21)
+
+where x0 = 0, xN +1 = 1. The same formula holds for β in terms of q(β).
+All the discussions above imply that Prop. 7 as well as Theorem 3 is a consequence of:
+Proposition 13. For any N ∈ {2, 3}, any x[N + 2] ∈ NDN +2 , x0 = 0, xN +1 = 1, any sequence
+λ[N + 2] ∈ [0, +∞)N +2 , any linear map Lj = A + Bxj with (A, B) ∈ [0, +∞) the map
+Qλ[N +2] : Compa(λ[N + 2]) −→ [0, 1]
+β[N + 2]
+7−→ V β[N +2] [N + 2]
+
+(22)
+
+reaches its maximum when β[N + 2] = 0[N + 2] and its minimum when β[N + 2] = ±λ[N + 2].
+
+8
+
+Write for short V ? instead of V β[N +2] ([N + 2]) and set
+`+
+= Lj + λj + βj , j ∈ J0, N + 1K,
+j
+
+`−
+j
+wj
+
+(23)
+
+= Lj + λj − βj , j ∈ J0, N + 1K,
+
+(24)
+
+−
+= `+
+j + `j = 2λj + 2Lj , j ∈ J0, N + 1K.
+
+(25)
+
+Consider for j ∈ J0, N + 1K some r.v. Zj = (xj , Yj ) uniform r.v. on Vj? . Let
+Uj := Y0 + xj (YN +1 − Y0 ), j ∈ J0, N + 1K
+the ordinate of the line (Z0 , ZN +1 ) at abscissa xj (where it intersects Vj? ). Let
+Abo := {j ∈ J1, N K : Yj ≥ Uj },
+the set of indices corresponding to the Zj ’s above the line (Z0 , ZN +1 ). For any A ⊂ J1, N K,
+P (Abo = A | Y0 = u0 , YN +1 = uN +1 ) =
+
+Y `−
+Y `+
+j − uj
+j + uj
+
+j∈A
+
+wj
+
+j∈{A
+
+wj
+
+,
+
+where {A := J1, N K \ A. Now, conditionally on (Y0 , YN +1 , Abo) = (u0 , uN +1 , A), set
+uj = u0 + xj (uN +1 − u0 ).
+
+(26)
+
+We will use the following notation: when A is a set of integers (indices), then for any generic
+variable y, y{A} is the set {yj , j ∈ A}, and y(A) denotes the tuple (yj , j ∈ A) where the indices j
+are sorted according their natural order in A.
+The proof of the following lemma is immediate (see Fig. 3):
+Lemma 14. Conditionally on (Y0 , YN +1 , Abo) = (u0 , uN +1 , A):
+(a) the set Z{A} is independent of Z{{A},
+(b) the r.v. Zj (A) are independent, and Zj is uniform on xj + i[uj , `+
+j ],
+−
+(c) the r.v. Z({A) are independent, and Zj is uniform on xj + i[−`j , uj ],
+(d) the points Z[N +2] are in convex position iff both {(0, u0 ), (1, uN +1 )}∪Z{A} and {(0, u0 ), (1, uN +1 )}∪
+Z{{A} are in convex position.
+Conditionally on (Z0 , ZN +1 , Abo) = (u0 , (1, uN +1 ), A) the points (Z0 , Z(A), ZN +1 ) are uniform
+on a collection of segments, collection which may be seen as an inclined comb, the shaft being not
+orthogonal to the teeth (see Fig. 3):
+I0 = i[u0 , u0 ],
+
+(27)
+
+IN +1 = 1 + i[uN +1 , uN +1 ],
+Ij
+
+=
+
+xj + i[uj , `+
+j ],
+
+j ∈ A,
+
+so that
+P ((Z0 , Z(A), ZN +1 ) ∈ CP2+#A | (Z0 , ZN +1 , Abo) = (u0 , (1, uN +1 ), A)) = I0 , I(A), IN +1 .
+9
+
+(28)
+(29)
+
+u0
+
+u0
+x̄m+1
+(1, um+1 )
+
+x̄0
+
+(1, um+1 )
+
+u0
+
+(1, um+1 )
+
+Figure 3:
+
+On the left picture: the two extreme points being fixed (Z0 , Zm+1 ) = (u0 , (1, um+1 ))
+being fixed, the set of indices of the points above the line is Abo = {2, 4, 5}. Now, on the right one:
+Conditional on Abo = {2, 4, 5}, there are some uniform points above the line in each of the part of
+the segments 2, 4 and 5, and some uniform points under the line in the part of the segments 1 and
+3. Appears, the two inclined combs above and below the line. The m + 2 = 7 points are in a convex
+positions, if in the superior comb, the 5 points are in a convex positions, and below, the 4 points also.
+
+Definition 15. For any x, ` in R, denote by CS the “canonical segment”
+CS[x, `] = x + i[0, `].
+For any m ≥ 0, for any sequence x[m + 2] ∈ NDm+2 with x0 = 0, xm+1 = 1 and `0 = 0, `1 , . . . , `m ≥
+0, `m+1 = 0, we let Cb[xj , `j ]1≤j≤m be the orthogonal comb (illustrated on Fig. 4)
+Cb[xj , `j ]1≤j≤m := (CS[xj , `j ], 0 ≤ j ≤ m + 1) .
+Notice that the two extreme segments are reduced to a single point.
+
+ℓ1
+
+ℓ2
+ℓn
+
+ℓm+1 = 0
+
+ℓ0 = 0
+0
+
+x1
+
+xm
+
+x2
+
+1
+
+Figure 4: The comb Cb[xj , `j ]1≤j≤m .
+One has
+
+I0 , I(A), IN +1 =
+
+Cb
+
+h
+
+xj , `+
+j − uj
+
+i
+j∈A
+
+
+,
+
+(30)
+
+since the orthogonal comb is the image of the inclined one by the affinity (a, b) 7→ (a, b − u0 −
+a(uN +1 − u0 )). A consequence of Lemma 14 is the following Proposition:
+10
+
+Proposition 16. We have, for uj = u0 + xj (uN +1 − u0 ),
+V β[N +2] [N + 2]
+
+Z L0 Z LN +1
+
+X
+
+=
+−L0
+
+Y `+
+Y `−
+j + uj
+j − uj
+
+−LN +1 A⊂{1,··· ,N } j∈A
+
+wj
+
+j∈{A
+
+(31)
+
+wj
+
+ED
+E du du
+0
+N +1
+−
+× Cb[xj , `+
+.
+−
+u
+]
+Cb[x
+,
+`
++
+u
+]
+j j∈A
+j j
+j j∈{A
+j
+w0 wN +1
+D
+
+(32)
+
+Next proposition provides the crucial close formula for hCb[xj , `j ]1≤j≤m i, which appears to be
+decomposable (see also Fig. 5), and to be a rational fraction in the xj ’s and the `j ’s
+Proposition 17. We have hCb[∅]i = 1, hCb[x1 , `1 ]i = 1, and for m ≥ 2
+
+
+
+
+ h
+xk
+1−xk
+m
+i
+`
+`
+`
+−
+`
+−
+X
+Y
+Y
+j
+j
+k
+k
+1
+xj
+1−xj
+
+
+
+=
+Cb xj , `j
+(33)
+m
+`k
+`k
+1≤j≤m
+j=1 1≤k<j
+j<k≤m
++* 
++
+* 
+
+
+xk − xj
+xk
+1 − xk
+xk
+, `k − `j
+Cb
+, `k −
+`j
+(34)
+.
+×
+Cb
+xj
+xj
+1 − xj
+1 − xj
+1≤k<j
+j<k≤m
+
+Additional elements on
+
+h
+i
+Cb xj , `j
+
+
+
+1≤j≤m
+
+are given below the proof and in Section 4.
+
+1−x4
+ℓ2
+ℓ4 − 1−x
+2
+
+ℓ1 − xx21 ℓ2
+ℓ1
+
+ℓ2
+ℓm
+ℓm+1
+
+ℓ0
+0
+
+x1
+
+xm
+
+x4
+
+x2
+
+D
+
+
+
+1
+
+
+E
+
+Figure 5: Illustration of a term in the decomposition of Cb x, `j 1≤j≤m .
+
+Proof. Assume m ≥ 2 and take again the same notation as in Def. 15. For t ∈ [0, 1], consider
+Γt := Cb[xj , (1 − t)`j ]
+so that Γ0 = Cb[xj , `j ] and Γ1 = [0, 1], and Γt is obtained from Γ0 by the affine map At (x, y) =
+(x, y(1 − t)) which keeps [0, 1] unchanged and reduces the length of the teeth of the comb. As usual
+take some independent r.v Uj , where Uj is uniform on xj + i[0, `j ] for j ∈ J1, mK, and U0 = 0,
+Um+1 = 1. Of course
+(d)
+
+(Uj , j ∈ J1, mK) = (xj + i`j Wj , j ∈ J1, mK)
+11
+
+for W1 , · · · , Wm i.i.d. uniform on [0, 1]. Let W ? = max{Wj , j ∈ J1, mK} and J the a.s. unique
+element j such that WJ = W ? . By symmetry J is uniform on J1, mK and conditionally on the
+event Evj,w := {(J, WJ ) = (j, w)} the r.v. Wk , for k 6= j are uniform on [0, w], so that now, the
+r.v. Uk , k 6= j are uniform in their corresponding tooth in Cb[xk , w`k ]1≤k≤m,k6=j . Conditionally on
+Evj,w , U [m + 2] ∈ CPm+2 iff all the r.v. Uk for k 6= j are outside the triangle U0 , Um+1 , Uj , and
+simultaneously (U0 , · · · , Uj−1 , Uj = xj + iw`j ) ∈ CPj+1 and (Uj = xj + iw`j , Uj+1 , · · · , Um+1 ) ∈
+CPm+2−j . Now,
+(a) the r.v. Uk for k 6= j are outside the triangle U0 , Um+1 , Uj if:
+• for k ≤ j if Uk belongs to I k := [ xxkj w`j , w`k ]. This occurs (cond. on Evj,w ) with
+x
+
+x
+
+probability
+
+w`k − xk w`j
+j
+
+w`k
+
+=
+
+`k − xk `j
+j
+
+(which does not depend on w),
+
+`k
+
+k
+• for k ≥ j, if Uk belongs to I k := [w 1−x
+1−xj `j , w`k ]. This occurs (cond. on Evj,w ) with
+1−x
+
+probability
+
+w`k −w 1−xk `j
+j
+
+w`k
+
+1−x
+
+=
+
+`k − 1−xk `j
+j
+
+`k
+
+(which does not depend on w).
+
+(b) by (a), for k 6= j, conditionally on Evj,w , Uk is uniform on I k . Then, we are in a situation where
+U0 = 0, U1 , · · · , Uj−1 , Uj = xj +iw`j are uniform in an inclined comb (formed by the segments
+I k , k ≥ j), as wellh as Uj = xj +iiw`j , Uj+1 , · · · , Um+1 . The first inclined
+comb can bei sent by
+h
+xk −xj
+1−xk
+1−xj , `k − 1−xj `j j<k≤m .
+
+xk
+xk
+xj , `k − xj `j 1≤k<j and the second one on Cb
+
+an affinity on Cb
+
+We have now to put all the pieces together: under the conditioning Evj,w , the probability that
+U [m + 2] ∈ CPm+2 does not depend on w. When we integrate along the distribution of W ? this
+brings an “extra factor” of 1. Now, J is uniform (and independent from W ? ) which brings a
+summation and a factor term 1/m. The rest of the contributions are clear.
+Introduce
+K[xj , `j ]1≤j≤m :=
+
+m
+Y
+
+!
+`k
+
+k=1
+
+h
+i
+Cb xj , `j
+
+
+1≤j≤m
+
+.
+
+(35)
+
+One sees that K solves the following simpler recurrence: K[∅] = 1, K[x1 , `1 ] = `1 and
+K[xj , `j ]1≤j≤m =
+
+
+
+
+
+m
+xk − xj
+1 X
+xk
+xk
+1 − xk
+`j K
+, `k − `j
+K
+, `k −
+`j
+. (36)
+m
+xj
+xj
+1 − xj
+1 − xj
+1≤k<j
+j<k≤m
+j=1
+
+The first non trivial formula is K[xj , `j ]1≤j≤2 :
+
+
+`1
+`2 − `1
+`2
+`2
+`1
+`1 − `2
+K[xj , `j ]1≤j≤2 =
+(
+−
+)+
+( −
+)
+x1 (1 − x1 ) x2 − x1 x2 − 1
+x2 (1 − x2 ) x1 x1 − x2
+× x1 (x2 − x1 )(1 − x2 )/2.
+
+12
+
+(37)
+
+Q
+
+P
+nj
+m
+It is immediate that K[xj , `j ]1≤j≤m is a polynomial in the `0j s, with degree
+`
+:= nj = m
+j=1 j
+and coefficients in the fields Q(x1 , · · · , xn ). And then (31) can be rewritten
+Z L0 Z LN +1
+
+V β[N +2] [N + 2]
+
+=
+−L0
+
+g(`+ , `− , u0 , uN +1 )
+du0 duN +1
+QN +1
+−LN +1
+j=0 wj
+
+(38)
+
+where
+X
+
+g(`+ , `− , u0 , uN +1 ) =
+
+A⊂J1,N K
+
+−
+K[xj , `+
+j − uj ]j∈A K[xj , `j + uj ]j∈{A .
+
+(39)
+
+Hence V β[N +2] [N + 2] can be explicitly computed, as integrated a polynomial is just an exercise.
+The symmetry of the integration domain corresponding to the symmetry of V0? and VN? +1 leads us
+to set
+X
+G(`+ , `− , u0 , uN +1 ) :=
+g(`+ , `− , εu0 , ε0 uN +1 )
+(40)
+(ε,ε0 )∈{−1,1}2
+
+and inflating the short notations `+ , `− , V ? (introduced in (23), (24),(25)) we have
+V
+
+β[N +2]
+
+Z L0 Z LN +1
+
+1
+
+[N + 2] = QN +1
+j=0
+
+wj
+
+0
+
+0
+
+G(L + λ + β, L + λ − β, u0 , uN +1 )du0 duN +1 .
+
+So Prop. 13, as well as Theorem 3 appear to be a consequence of the following Proposition:
+Proposition 18. Under the hypothesis of Prop. 13, for any u0 , uN +1 ∈ [0, L0 ] × [0, LN +1 ], the
+following map defined on Compa(λ[N + 2])
+β[N + 2] 7→ G(L + λ + β, L + λ − β, u0 , uN +1 )
+reaches its maximum when β[N + 2] = 0[N + 2] and its minimum when β[N + 2] = ±λ[N + 2].
+
+3
+
+Optimization, and end of the proof of Theorem 3:
+
+We have now enough information to proceed to the optimization of V β[N +2] [N + 2] for N ∈
+{2, 3}, or rather, to proceed to the optimization of G(L + λ + β, L + λ − β, u0 , uN +1 ). In Section 4.2
+we provide a formula for K as a sum involving 2m terms (choices of (A, {A)) each of them being
+a product of m terms. This huge number of terms and their complexity of course makes of the
+optimization problem a difficult task. We tried to treat larger N by multiple methods including
+convexity, recurrence, variation calculus, decomposition of g by packing its terms.
+In the case N ∈ {2, 3} the optimization can be achieved by brute force. When N = 2 this provides an alternative proof to that of Blaschke. The case N = 3 needs some important computations
+resources, difficult to handle without the assistance of a computer algebra system.
+
+13
+
+Note 19. In the sequel, we will often have to prove that a linear function of x1 (resp. x2 or x3 )
+is positive on A1 = [0, x2 ] (resp. A2 = [x1 , x3 ], or A3 = [x2 , 1]). We will say that a polynomial
+P ∈ R[x1 , x2 , x3 ] is in Lin(xj ) if the degree of P in xj is 1. To prove the positivity of such a
+polynomial on Aj = [Aj , Aj ] we will only prove the positivity of the pair P (Aj ), P (Aj ). Notice that
+(P (Aj )−P (Aj ))
+(Aj P (Aj )−Aj P (Aj ))
+). In the sequel, often,
++
+this pair determines P (which is P = xj
+Aj −Aj
+A j − Aj
+we will describe P by giving P (Aj ), P (Aj ) only.
+
+Optimization: Case n = 4 (that is N = 2)
+
+3.1
+
+We prove here Proposition 18 in the case n = 4, that is N = 2. We then fix, L(x) = l0 +(l1 −l0 )x
+for some (l0 , l1 ) ∈ [0, +∞)2 , and β[4] ∈ Comp(λ[4]). with the formula we have given in the previous
+sections, we compute
+β 2 x1
+β 2 (1 − x2 )
+G(λ + L, λ + L, a, b) − G(λ + β + L, λ − β + L, a, b) = 4 2 + 4 1
+x2
+1 − x1
+
+(41)
+
+from what we see that G(λ + L, λ + L, a, b) ≥ G(λ + β + L, λ − β + L, a, b) in every case. Observe
+that the RHS in (41) does not depend on (a, b), nor on (l0 , l1 ) which may seem strange at the first
+glance but can be understood even without computing G (see Section 4). Compute now
+G(λ + L + β, λ − β + L, a, b) − G(2λ + L, L, a, b) = 4(λ22 − β22 )
+
+1 − x2
+x1
++ 4(λ21 − β12 )
+.
+x2
+1 − x1
+
+(42)
+
+When (18) holds this is always non-negative. This suffices to see that Proposition 18 holds true
+when n = 4, and then Theorem 1 in this case as explain along the paper.
+
+3.2
+
+Optimization: Case n = 5
+
+We prove here Proposition 18 in the case n = 5, that is N = 3, which again implies Theorem 1
+in this case.
+3.2.1
+
+Minoration
+
+We compute with a computer algebra system
+D = G(λ + L + β, λ − β + L, a, b) − G(2λ + L, L, a, b)
+
+(43)
+
+and prove its non negativity when β[N + 2] ∈ Comp(λ[N + 2]). The complexity of the task comes
+from the fact that the simplest formula we can find for D is huge! Indeed, G(`+ , `− , a, b) is a sum
+−
++
+−
+of 8 terms, each of them being a product of 3 linear form in the `+
+j , `j , a, b. Moreover `j and `j
+are themselves sum of three terms. After expansion some cancellations occur but the number of
+remaining terms is still important. There are not obvious way to pack the terms, or to make a
+proof by recurrence that would permit to optimize D for a given N using the preceding ones.
+Moreover, if we did not make any mistake, D is not non negative for all β satisfying only
+|βj | ≤ λj (for every j). It seems that the condition |qj | ≤ pj (for every j) is needed. We will then
+work in terms of pj ’s, qj0 s and will prove the positivity of G on
+Compa? (λ[N + 2]) = {β[N + 2] : |qj (β)| ≤ pj (λ), β0 = βN +1 = 0}.
+14
+
+We then proceed to the change of variables described in (21), and prove the positivity of D by
+writing D as a polynomial with variables pj , (pj + qj ), (pj − qj ) and non negative coefficients in
+Q(x1 , x2 , x3 ) when 0 ≤ x1 ≤ x2 ≤ x3 ≤ 1 . A polynomial that can written in such a form will be
+said to be in Cone(p, p − q, p + q). An example is (x2 − x1 )(p1 + q1 ) + (x3 − x1 x2 )(p2 − q2 ).
+Taking again L(x) = l0 + (l1 − l0 )x for some (l0 , l1 ) ∈ [0, +∞)2 , and expanding D the result
+appears to have degree 1 in l0 and in l1 and degree 0 in a and b (explanations are given in Section
+4). Hence D can be uniquely written under the form
+D = 4l0 D0 + 4l1 D1 + 4D2
+where D1 , D0 , D2 are polynomial in x, p, q. We search to prove
+P that each Di ∈ Cone(p, p − q, p + q).
+We will then prove this by proving that D2 can be written 1≤i,j,k≤3 ck,i,j pk (pi + qi )(pj − qj ) with
+some non negative ck,i,j . There are several solutions, one of them satisfies the needed conditions.
+The solution is as follows: for any (k, i, j), ck,i,j = ck,j,i , and
+c1,1,1 = 2 x31 (1 − x3 )(1 − x2 )(x3 − x1 )/x3
+c1,1,2 = P0 (x1 )(1 − x3 )x21 /x3
+
+c1,1,3 = 2 x21 x2 (1 − x3 )2 (x3 − x1 )/x3
+(1 − x3 )x1
+c1,2,2 = 2P1 (x3 )
+x3 (1 − x1 )
+(1 − x3 )2 x1
+c1,2,3 = 2P2 (x3 )
+x3 (1 − x1 )
+(1 − x3 )2 x1
+c1,3,3 = 2P3 (x3 )
+(1 − x2 )(1 − x1 )
+with P0 (x1 ) ∈ Lin(x1 ), P0 (0) = x22 + x2 x3 − 2x22 x3 > 0, P0 (x2 ) = 2x2 (1 − x2 )(x3 − x2 ) > 0.
+P1 (x3 ), P2 (x3 ), P3 (x3 ) ∈ Lin(x3 ) and P1 (x2 ) = x2 (1 − x2 )(−x1 x2 − x1 + 2 x2 )(x2 − x1 ) > 0, P1 (1) =
+(1 − x2 )((x1 x2 − x1 )2 + (1 − x1 )(x2 − x1 )x2 ) > 0, P2 (1) = (x1 x2 − x2 )2 + (x1 − x2 )2 > 0, P2 (x2 ) =
+x2 (−x1 x2 − x1 + 2 x2 )(x2 − x1 ) > 0, P3 (1) = x2 (1 − x1 )2 (1 − x2 ) > 0, and P3 (x2 ) = (1 − x2 )(x1 x2 +
+x1 − 2 x2 )(x1 − x2 ) > 0.
+c2,1,1 = x21 (1 − x3 )P4 (x1 )/x3
+(1 − x2 )x21 (1 − x3 )
+c2,1,2 = 2
+P5 (x1 )
+x3 (1 − x1 )
+x2 (1 − x3 )2
+c2,1,3 = 2 1
+P5 (x1 )
+x3 (1 − x1 )
+(1 − x3 )x1
+c2,2,2 =
+P0 (x1 )P5 (x1 )
+x3 (1 − x1 )(x3 − x1 )
+(1 − x3 )2 x1 x2
+P5 (x1 )
+c2,2,3 = 2
+x3 (1 − x1 )
+(1 − x3 )2 x1
+c2,3,3 =
+P4 (x1 )
+1 − x1
+15
+
+with P4 (x1 ) ∈ Lin(x1 ), and P4 (0) = x2 (−2 x2 x3 − x2 + 3 x3 ) > 0, P4 (x2 ) = 2 x2 (1 − x2 )(x3 − x2 ) > 0.
+with P5 (x1 ) ∈ Lin(x1 ), and P5 (0) = x2 (−x2 x3 − x2 + 2 x3 ) > 0, P5 (x2 ) = 2 x2 (1 − x2 )(x3 − x2 ) > 0.
+We need to prove the positivity of the last series c3,i,j .
+x21 (1 − x3 )
+P6 (x1 )
+x2 x3
+x2 (1 − x3 )
+2 1
+P7 (x1 )
+x3 (1 − x1 )
+(1 − x3 )2 (1 − x2 )(x3 − x1 )x21
+2
+1 − x1
+(1 − x3 )x1
+2
+P8 (x1 )
+x3 (1 − x1 )
+(1 − x3 )2 x1
+P0 (x1 )
+1 − x1
+(1 − x3 )3 (x3 − x1 )x1 x2
+2
+1 − x1
+
+c3,1,1 = 2
+c3,1,2 =
+c3,1,3 =
+c3,2,2 =
+c3,2,3 =
+c3,3,3 =
+
+with P6 (x1 ), P7 (x1 ), P8 (x1 ) ∈ Lin(x1 ), and P6 (0) = x2 x3 2 (1 − x2 ) > 0, P6 (x2 ) = x2 (−x2 x3 − x2 +
+2 x3 )(x3 −x2 ), P7 (0) = (x2 x3 −x3 )2 +(x2 −x3 )2 > 0, P7 (x2 ) = (1−x2 )(−x2 x3 −x2 +2 x3 )(x3 −x2 ) > 0,
+and P8 (0) = x2 ((x2 x3 − x2 )2 + x3 (1 − x2 )(x3 − x2 )), P8 (x2 ) = x2 (1 − x2 )(−x2 x3 − x2 + 2 x3 )(x3 −
+x2 ) > 0. Hence, we have established that D3 > 0. We now prove
+P with the same method that
+D1 ∈ Cone(p + q, p − q). One finds that D1 can be written
+1≤i,j≤3 ci,j (pi + qi )(pj − qj ) for
+c1,3 = c3,1 , c2,1 = c1,2 , c3,2 = c2,3 and
+x21
+P6 (x1 )
+x2 x3
+x21
+2
+P7 (x1 )
+(1 − x1 )x3
+x2 (1 − x3 )(1 − x2 )(x3 − x1 )
+2 1
+1 − x1
+x1
+P8 (x1 )
+2
+(1 − x1 )x3
+(1 − x3 )x1
+P0 (x1 )
+1 − x1
+x1 x2 (1 − x3 )2 (x3 − x1 )
+2
+1 − x1
+
+c1,1 = 2
+c1,2 =
+c1,3 =
+c2,2 =
+c2,3 =
+c3,3 =
+
+which proves that D1 > 0. By symmetry D0 > 0 too.
+
+3.3
+
+Majoration
+
+We compute with a computer algebra system
+D := G(λ + L, λ + L, a, b) − G(λ + β + L, λ − β + L, a, b)
+16
+
+we find that
+D = l0 f1 + l1 f2 + f3
+where the terms f1 , f2 , f3 are polynomial, linear in λ, quadratic in β (and do no depends on l0 , l1
+nor on (a, b)). Here the formula are small enough to be written down. One finds:
+β3 (β3 x1 x2 + β1 x2 + β2 x1 − x2 β3 )
+x3
+2
+2
+β1 (1 − x3 )(1 − x2 )
+β2 (1 − x3 )(1 − x1 )
++
+,
+1 − x1
+1 − x2
+
+f1 /8 = ( β1 β2 (x3 − 1) + β1 x2 β3 + β2 β3 x1 ) −
++
+
+and f2 can be obtained from f1 by a change of variables (by symmetry); f3 appears to be
+x1 β2 2 (λ2 x3 − λ2 + λ3 ) (β1 − β3 )2 (λ1 − λ3 )(x1 − x2 )
++
+x2
+x1 − x3
+β3 (2 β1 λ3 x2 + 2 β2 λ3 x1 − β3 λ1 x2 − β3 λ2 x1 + β3 λ3 (x1 − x2 ))
+β2 2 (1 − x3 )(λ1 − λ2 x1 )
++2
+x3
+1 − x2
+β1 (β1 (λ1 x2 − λ1 x3 + λ2 x3 + λ3 x2 − λ2 − λ3 ) + 2 β2 λ1 (1 − x3 ) + 2 β3 λ1 (1 − x2 ))
+.
+x1 − 1
+
+f3 /4 = β1 (β1 λ3 + 2 β3 λ1 − β1 λ1 ) + 2
+−
++
+
+Again as explained in Section 4, a and b play not role at all. Now, f1 and f3 are quadratic forms
+in the βi ’s. Again, D seems not positive on the set of β[5] satisfying only |βj | ≤ λj . We work again
+on Compa? after making the change of variables (21).
+3.3.1
+
+Positivity of f1
+
+We then find that the quadratic form f1 written in terms of q can be written
+f1 = (q1 , q2 , q3 )M (q1 , q2 , q3 )t
+3 −x1 )x1
+N and N is the symmetric matrix with coefficients:
+where M = 4 (1−x3 )(x
+x3
+
+
+P0 (x1 )
+2 (1 − x3 )x2
+2 x1 (1 − x2 )
+x3 −x1
+
+
+
+
+P1 (x3 )
+P0 (x1 )
+(1−x3 )P2 (x3 )
+2
+2
+N =
+
+x3 −x1
+(x1 −x3 )x1 (x1 −1)
+(x3 −x1 )x1 (1−x1 )
+
+
+(1−x3 )P2 (x3 )
+P3 (x3 ) (1−x3 )x3
+2 (1 − x3 )x2 2 (x3 −x1 )x1 (1−x1 ) 2 (x3 −x1 )x1 (x2 −1)(x1 −1)
+
+For any matrix M denote by M [k] the extracted matrix (Mi,j )1≤i,j≤k . To prove the non negativity of f1 it suffices to prove the positivity of det(M [k]).
+We find det(N [1]) = 2(1 − x2 )x1 > 0,
+det(N [2])
+
+(x3 − x1 )2
+(1 − x1 ) = g(x1 ) ∈ Lin(x1 )
+(x1 − x2 )2
+
+with g(0) = (−2 x2 x3 + x2 + x3 )(−2 x2 x3 − x2 + 3 x3 ) > 0 and g(x2 ) = (1 − x2 )(−4 x2 x3 + x2 +
+3 x3 )(x3 − x2 ) > 0. Last
+det(N [3])
+
+(x3 − x1 )3 (1 − x2 )(1 − x1 )x1
+= g(x3 ) ∈ Lin(x3 )
+x3 (1 − x3 )(x2 − x1 )2 (x3 − x2 )2
+17
+
+with g(x2 ) = 2 (1 − x2 )(3 x1 x2 − x1 − 2 x2 )(x1 − x2 ) > 0, g(1) = 6 x2 (1 − x1 )2 (1 − x2 ) > 0, we
+deduce the fact that det(N [3]) > 0. Hence M is definite positive, and then f1 is positive except
+when (q1 , q2 , q3 ) = 0 in which case it is 0.
+3.3.2
+
+Positivity of f3
+
+Since f3 is linear in p and quadratic in q, we write
+f3 =
+
+3
+X
+
+pi (q1 , q2 , q3 )M (i) (q1 , q2 , q3 )(t) .
+
+i=1
+
+The pi ’s being non negative, is suffices to prove the positivity of det(M (i) [j]) for i ∈ {1, 2, 3},
+j ∈ {1, 2, 3}. Since p1 and p3 plays the same role (by symmetry with respect to the line x = 1/2,
+only the cases i ∈ {1, 2} have to be treated.
+x3
+We have for N := M (1) 4(1−x
+2,
+3)
+
+
+
+N =
+
+
+
+1 )(1−x2 )
+2 x1 (x3 −x
+1−x3
+
+P0 (x1 ) x1 2
+1−x3
+
+P0 (x1 ) x1 2
+1−x3
+
+2 x1 2 x2 (x3 − x1 )
+
+P1 (x3 ) x1
+2 (1−x
+3 )(1−x1 )
+
+(x3 ) x1
+2 P21−x
+1
+
+2 x1 2 x2 (x3 − x1 )
+
+(x3 ) x1
+2 P21−x
+1
+
+P3 (x3 ) x1 x3
+2 (1−x
+2 )(1−x1 )
+
+3
+
+Hence,
+det(N [1]) = −2
+det(N [2]) =
+
+
+
+
+
+
+
+
+x1 3 (x2 − 1) (x1 − x3 )
+>0
+x3 − 1
+
+(x1 − x2 )2
+g(x1 ) ∈ Lin(x1 )
+(x3 − x1 )2 (1 − x1 )
+
+with g(x2 ) = (1−x2 )(4 x2 x3 −x2 −3 x3 )(x2 −x3 ) > 0, g(0) = (2 x2 x3 −x2 −x3 )(2 x2 x3 +x2 −3 x3 ) > 0.
+Finally,
+(x1 − x2 )2 (x2 − x3 )2 x3 (x3 − 1)
+det(N [3]) = 2
+g(x3 ) ∈ Lin(x3 )
+(x1 − x3 )3 x1 (x1 − 1) (x2 − 1)
+with
+
+g(x2 ) = (1 − x2 )(−3 x1 x2 + x1 + 2 x2 )(x2 − x1 ) > 0, g(1) = 3 x2 (1 − x1 )2 (1 − x2 ) > 0
+Remains the matrix
+
+M
+
+(2)
+
+P4 (x1 ) x1 2 (1−x3 )
+x3
+
+
+ x1 2 (1−x3 )(1−x2 )P5 (x1 )
+= 4
+ 2
+(1−x1 )x3
+
+2
+2
+3 ) P5 (x1 )
+2 x1 (1−x
+(1−x1 )x3
+
+2
+
+2
+
+2
+
+3 )(1−x2 )P5 (x1 )
+2 x1 (1−x(1−x
+1 )x3
+
+3 ) P5 (x1 )
+2 x1 (1−x
+(1−x1 )x3
+
+(1−x3 )x1 P0 (x1 ) P5 (x1 )
+x3 (1−x1 )(x3 −x1 )
+
+2
+3 ) x2 P5 (x1 )
+2 x1 (1−x
+(1−x1 )x3
+
+2
+
+3 ) x2 P5 (x1 )
+2 x1 (1−x
+(1−x1 )x3
+
+x2 (1−x )
+
+Along almost the same lines, det(M (2) [1]) = 4 1 x3 3 P4 (x1 ) > 0,
+18
+
+P4 (x1 ) (1−x3 )2 x1
+1−x1
+
+
+
+
+
+
+
+
+det(M (2) [2]) = 16
+with g1 (x1 ) ∈ Lin(x1 ) and
+
+(1 − x3 )2 x31 (x2 − x1 )2
+g1 (x1 )P5 (x1 )
+x3 2 (x3 − x1 )(1 − x1 )2
+
+g1 (x2 ) = (1 − x2 )(−4 x2 x3 + x2 + 3 x3 )(x3 − x2 ) > 0
+g1 (0) = (−2 x2 x3 + x2 + x3 )(−2 x2 x3 − x2 + 3 x3 ) > 0
+det(M (2) [3]) = 3 × 64
+
+(x2 − x1 )2 (x2 − x3 )2 x1 4 (x3 − 1)4
+P4 (x1 )P5 (x1 ) > 0.
+x3 2 (1 − x1 )2 (x3 − x1 )
+
+4
+
+Algebraic considerations
+
+4.1
+
+Elements on the function K
+
+Recall Prop. 17 and (35). Formula (36) implies that K possesses a binary tree structure: choose
+uniformly a pivot j, splits the points in two parts (those with indices < j, those with indices > j)
+and iterate in both parts. In Fig. 5, see the first decomposition done according to j = 2. The
+triangle with vertices v0 , vj , vm+1 with vk = xk + i`k plays an important role. When one expands
+the computation in each of the subtrees, one sees that at the second step
+– in the part at the left of vj , v0 is still at the left, but now vj plays now the role of the right
+boundary (as did before vm+1 ),
+– in the part at the right of vj , vm+1 is still at the right, but now vj plays now the role of the left
+boundary (as did before v0 ).
+Let z[m+2] be a sequence of different points in the plane where zj = (xj , γj ), for some x[m+2] ∈
+NDm+2 , x0 = 0, xm+1 = 1. Let us call directed triangle 3-tuples of the form t = (zj1 , zj2 , zj3 ) with
+0 ≤ j1 < j2 < j3 ≤ m + 1. We call triangulation of z[m + 2] a set T of triangles satisfying the
+following conditions:
+• #T = m (this is the number of different triangles in T ),
+• the triangles are non crossing : if t = (zj1 , zj2 , zj3 ) and t0 = (zj10 , zj20 , zj30 ) are two different triangles
+in T then either:
+– {j1 , j2 , j3 } is included in one of the intervals J0, j10 K, Jj10 , j20 K, Jj20 , j30 K, Jj30 , m + 1K
+– or {j10 , j20 , j30 } is included in one of the intervals J0, j1 K, Jj1 , j2 K, Jj2 , j3 K, Jj3 , m + 1K.
+Denote by Tri(z[m + 2]) the set of triangulations of z[m + 2]. When T ∈ Tri(z[m + 2]), the set of
+central points {zj2 | (zj1 , zj2 , zj3 ) ∈ T } equals J1, mK. Let t = (zn1 , zn2 , zn3 ) be a triangle. Let
+
+
+
+xn2 − xn1
+qt (x[m + 1], γ[m + 1]) = γn2 − γn1 +
+(γn3 − γn1 ) /(n3 − n1 − 1)
+(44)
+xn3 − xn1
+be the length of the vertical segment from zn2 to the segment [zn1 , zn3 ] divided by n3 − n1 − 1. Set
+X
+Y
+K ? (x[m + 2], γ[m + 2]) =
+qt (x[m + 2], γ[m + 2]).
+(45)
+T ∈Tri(z[m+2]) t∈T
+
+We have the following combinatorico-geometrical representation of K :
+19
+
+v1
+
+v0
+0
+
+v2
+
+ℓ1
+
+ℓ2
+
+ℓ4
+
+ℓm
+
+vm+1
+
+x1
+
+x2
+
+x4
+
+xm
+
+1
+
+Figure 6: Illustration of a triangulation t.
+
+Theorem 20. For any x[m + 2] ∈ NDm+2 , x0 = 0, xm+1 = 1, any `[m + 2] ∈ [0, +∞)m+2 such
+that `0 = `m+1 = 0, we have
+K[xj , `j ]1≤j≤m = K ? (x[m + 2], `[m + 2]).
+
+(46)
+
+Proof. Expand (36).
+Lemma 21. If Li = l0 + xi (l1 − l0 ) is affine (in this sense), for any sequence γ[m + 2],
+K ? (x[m + 2], γ[m + 2] + L[m + 2]) = K ? (x[m + 2], γ[m + 2]).
+
+(47)
+
+Remark 22. What is the difference between K and K ? ? By definition, K[xj , `j ]j∈A depends on
+4 extra quantities that are x0 = 0, xN +1 = 1, `0 = 0, `N +1 = 0. For K ? (x[m + 2], `[m + 2]) these
+conditions are not assumed, and K ? is defined even when `0 or `N +1 are not 0. Hence, when ` is
+linear in the sense `j = a+xj (b−a), we do have K ? (x[m+2], `[m+2]) = 0 but K[xj , `j ]1≤j≤m is not
+0 (in general), since the computation of this quantity is done assuming `0 = 0, `m+1 = 0. What it
+still true is that qt (`) is 0 when the triangle t does not contain 0 or m + 1. In the summation giving
+K, when ` is linear only remains the contributions of the triangulations in which each triangle is
+incident to 0 or m + 1.
+
+4.2
+
+Alternative representation of K[xj , `j ]1≤j≤m
+
+Instead of taking the sum on all subtrees, we can make a summation on all permutations. For
+any σ permutation in SJ1, mK, set
+Rj (σ) = min{σi : i < j, σi > σj } ∨ 0,
+
+Lj (σ) = max{σi : i < j, σi < σj } ∧ (m + 1).
+
+Then one can prove
+
+20
+
+Lemma 23. We have
+K ? (x[m + 2], γ[m + 2]) =
+
+1
+m!
+
+X
+
+m
+Y
+
+qeσ,i (x[m + 2], γ[m + 2])
+
+(48)
+
+σ∈S(J1,mK) j=1
+
+where
+qeσ,i (x[m + 2], γ[m + 2]) :=
+
+γR (σ) − γσj
+γσj − γLj (σ)
+− j
+xσj − xLj (σ) xRj (σ) − xσj
+
+!
+
+(xσj − xLj (σ) )(xRj (σ) − xσj )
+,
+xRj (σ) − xLj (σ)
+
+(49)
+
+and x0 = 0, xm+1 = 1.
+Proof. The proof is more or less the same as that appearing above, in Section 4.1. In this section,
+we used the fact that K owns a binary structure, when one observes separately the two parts lying
+apart of the pivot (dissection property of K, coming from Prop. 17). But instead of considering
+“independently” what happens in this two parts, we can make the iteration on the collection of
+remaining segments (at time k, k segments have been “taken”). Conditional on the set of indices
+A of these segments, the remaining points Uj are uniform in these segments which have the form
+xj + i[yj + `0j wj ] for some (yj , `0j ). We still make a decomposition taking the maximum of the wj
+(which is uniform in the set of remaining indices), and iterate. Putting all pieces together, we can
+see that Lemma 23 holds.
+
+4.3
+
+Simplifications in the computations of G
+
+The representation of K given in Theorem 20 allows one to see that K[xj , `j ]1≤j≤m is a sum
+of products of quantities, the qt (`)’s, linear in `. As already said in Remark 22 for every triangle
+t = (n1 , n2 , n3 ) with n1 > 0, n3 < m + 1, qt (`) = 0 when ` is linear (except at the border). In the
+computation we are doing, we need to compute quantities of the form F = G(λ + L, λ + L, a, b) −
+G(λ + β + L, λ − β + L, a, b) which involves quantities of the form K[xj , Lj + uj + λj + βj ]j∈A . Hence,
+the qt involved are of the form qt (L+u+λ+β) = qt (L)+qt (u)+qt (λ)+qt (β) and L(x) = l0 +x(l1 −l0 ).
+When one expands everything, since u and L are linear, the only contributions of a and b come
+from the triangles that are incident to the points 0 and m + 1. The resulting big sum, is then a sum
+over the triangulations, of the products over each triangulations of the triangle associated values
+qt (`), with in each triangle a sum over ` = λ, ±β (depending on the case), u and L (only when t
+is adjacent to 0 or to m + 1). Moreover, our decomposition
+formula showsPthat the degree of F in
+Q
+l0 , l1 , a, b, λ, β is n (where the degree of a term viki in these variables is
+ki ).
+Besides F is even in β. Hence when one expands everything, in terms of qt , remains only a sum
+of product of qt ’s in which all terms cancel except those involving a positive even number of qT (β),
+some qT (L) incident to the boundary (by Remark 22), an even number of qT (u), incident to the
+boundary (by Remark 22); since qt (u) itself is linear in a, b. Developing everything, since we sum
+on (εa, ε0 b) for (ε, ε0 ) ∈ {−1, 1}2 , remains only the terms even in a and in b.
+Notice also that the terms involving no βj ’s cancels.
+When n = 4, that is N = 2, these conditions put together imply that huge cancellations arise:
+remains only terms that depends on βj ’s. When n = 5, remains only terms quadratic in β, linear
+in λ and in L. When n = 6, remains a polynomial much more complex: it contains terms with
+degree 2, 4 in the βj , with coefficients with degree 1 or 2 in λ, 0 or 2 in a and b, 0,1, or 2 in l0 , l1 .
+21
+
+References
+[1] W. Blaschke. Über affine geometrie xi: Lösung des ’vierpunktproblems’ von sylvester aus
+der theorie der geometrischen wahrscheinlichkeiten. Ber. Verh. Sachs. Akad. Wiss. Leipzig
+Math.-Phys, 69:436–453, 1917.
+[2] C. Buchta. On the number of vertices of the convex hull of random points in a square and a
+triangle. Anz. Österreich. Akad. Wiss. Math.-Natur. Kl., 143:3–10, 2009/10.
+[3] D. Hug. Random polytopes. In Stochastic geometry, spatial statistics and random fields,
+volume 2068 of Lecture Notes in Math., pages 205–238. Springer, Heidelberg, 2013.
+[4] B. Klartag. Rate of convergence of geometric symmetrization. Geometric and Functional
+Analysis, 14(6):1322–1338, 2004.
+[5] J.-F. Marckert. The probability that n random points in a disk are in convex position. Braz.
+J. Probab. Stat. In revision, 2016?
+[6] V.D. Milman and A. Pajor. Isotropic position and inertia ellipsoids and zonoids of the unit
+ball of a normed n-dimensional space. In Joram Lindenstrauss and VitaliD. Milman, editors,
+Geometric Aspects of Functional Analysis, volume 1376 of Lecture Notes in Math., pages 64–
+104. Springer Berlin Heidelberg, 1989.
+[7] R.E. Pfeifer. The historical development of j. j. sylvester’s four point problem. Mathematics
+Magazine, 62(5):309–317, 1989.
+[8] M. Reitzner. New perspectives in stochastic geometry, Molchanov, I., and Kendall, W. edts,
+chapter Random polytopes (survey)., pages 45–76. Oxford University Press, Oxford., 2010.
+[9] P. Gronchi S. Campi, A. Colesanti. Shaking compact sets. Beiträge zur Algebra und Geometrie,
+42:123–136, 2001.
+[10] J.J. Sylvester. Problem 1491. The educational Times, April. 1864.
+[11] P. Valtr. Probability that n random points are in convex position. Discrete & Computational
+Geometry, 13:637–643, 1995.
+[12] P. Valtr. The probability that n random points in a triangle are in convex position. Combinatorica, 16(4):567–573, 1996.
+
+22
+
+

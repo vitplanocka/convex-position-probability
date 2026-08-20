@@ -1,0 +1,39 @@
+square    [exact rational]  E[A_3]=0.076388888889
+          (I)   E[A_4]-2E[A_3] = -1.117e-06 +- 1.8e-05   z=-0.06
+          (P4)  pred 0.694444444  MC 0.694493675 +- 3.3e-05  z=+1.51
+          (II)  pred 0.340277778  MC 0.340291175 +- 3.4e-05  z=+0.40   testersAgree=True  (56s)
+triangle  [exact rational]  E[A_3]=0.083333333333
+          (I)   E[A_4]-2E[A_3] = +3.013e-05 +- 1.8e-05   z=+1.68
+          (P4)  pred 0.666666667  MC 0.666656125 +- 3.3e-05  z=-0.32
+          (II)  pred 0.305555556  MC 0.305623600 +- 3.3e-05  z=+2.09   testersAgree=True  (277s)
+disk      [route P Richardson]  E[A_3]=0.073880029739
+          (I)   E[A_4]-2E[A_3] = +1.809e-05 +- 1.4e-05   z=+1.25
+          (P4)  pred 0.704479881  MC 0.704465615 +- 3.2e-05  z=-0.44
+          (II)  pred 0.356188312  MC 0.356204070 +- 3.4e-05  z=+0.47   testersAgree=True  (303s)
+pentagon  [route P exact polygon]  E[A_3]=0.074845199750
+          (I)   E[A_4]-2E[A_3] = +2.320e-05 +- 1.8e-05   z=+1.32
+          (P4)  pred 0.700619201  MC 0.700640275 +- 3.2e-05  z=+0.65
+          (II)  pred 0.349788456  MC 0.349738445 +- 3.4e-05  z=-1.48   testersAgree=True  (653s)
+hexagon   [route P exact polygon]  E[A_3]=0.074331275720
+          (I)   E[A_4]-2E[A_3] = +1.592e-05 +- 1.5e-05   z=+1.06
+          (P4)  pred 0.702674897  MC 0.702730140 +- 3.2e-05  z=+1.71
+          (II)  pred 0.353137860  MC 0.353132980 +- 3.4e-05  z=-0.14   testersAgree=True  (674s)
+octagon   [route P exact polygon]  E[A_3]=0.074018708873
+          (I)   E[A_4]-2E[A_3] = +1.828e-05 +- 1.6e-05   z=+1.16
+          (P4)  pred 0.703925165  MC 0.703926220 +- 3.2e-05  z=+0.03
+          (II)  pred 0.355235139  MC 0.355267535 +- 3.4e-05  z=+0.96   testersAgree=True  (679s)
+ellipse3  [route P Richardson]  E[A_3]=0.073880029739
+          (I)   E[A_4]-2E[A_3] = +1.809e-05 +- 1.4e-05   z=+1.25
+          (P4)  pred 0.704479881  MC 0.704465615 +- 3.2e-05  z=-0.44
+          (II)  pred 0.356188312  MC 0.356204070 +- 3.4e-05  z=+0.47   testersAgree=True  (301s)
+halfdisk  [route P Richardson]  E[A_3]=0.076512497524
+          (I)   E[A_4]-2E[A_3] = -1.759e-06 +- 1.7e-05   z=-0.11
+          (P4)  pred 0.693950010  MC 0.693980230 +- 3.3e-05  z=+0.93
+          (II)  pred 0.341069937  MC 0.341074045 +- 3.4e-05  z=+0.12   testersAgree=True  (265s)
+stadium   [route P Richardson]  E[A_3]=0.074403975611
+          (I)   E[A_4]-2E[A_3] = -1.599e-05 +- 1.5e-05   z=-1.04
+          (P4)  pred 0.702384098  MC 0.702427090 +- 3.2e-05  z=+1.33
+          (II)  pred 0.352809265  MC 0.352892600 +- 3.4e-05  z=+2.47   testersAgree=True  (488s)
+
+max |z| over all bodies and all three tests: 2.47
+wrote ../results/A3_identity_mc.json

@@ -1,0 +1,50 @@
+self-test: max |F - 5/72| over 200 random affine triangles      = 5.27e-16
+           max |F - F(square)| over 200 random parallelograms   = 7.22e-16
+=== n=5 landscape: 561 bodies, F = E[A_3]-E[A_3^2], P_5 = 1-10F ===
+conjectured window: F in [0.064381168773, 0.069444444444]  <=>  P_5 in [0.305555555556, 0.356188312273]
+
+-- 12 smallest F (closest to the ELLIPSE bound / largest P_5) --
+  F=0.064381168788  P_5=0.356188312121  gap_below=-1.514e-11  cap theta=6.2832
+  F=0.064381168820  P_5=0.356188311799  gap_below=-4.739e-11  Minkowski (1-t)T + tD, t=1.000
+  F=0.064381169453  P_5=0.356188305474  gap_below=-6.798e-10  stadium a=0.001
+  F=0.064381318806  P_5=0.356186811936  gap_below=-1.500e-07  regular 40-gon
+  F=0.064381334803  P_5=0.356186651975  gap_below=-1.660e-07  regular 39-gon
+  F=0.064381352989  P_5=0.356186470114  gap_below=-1.842e-07  regular 38-gon
+  F=0.064381373735  P_5=0.356186262654  gap_below=-2.050e-07  regular 37-gon
+  F=0.064381376427  P_5=0.356186235734  gap_below=-2.077e-07  cap theta=6.0235
+  F=0.064381397485  P_5=0.356186025148  gap_below=-2.287e-07  regular 36-gon
+  F=0.064381424778  P_5=0.356185752217  gap_below=-2.560e-07  regular 35-gon
+  F=0.064381456267  P_5=0.356185437328  gap_below=-2.875e-07  regular 34-gon
+  F=0.064381492751  P_5=0.356185072495  gap_below=-3.240e-07  regular 33-gon
+
+-- 12 largest F (closest to the TRIANGLE bound / smallest P_5) --
+  F=0.069372074333  P_5=0.306279256674  gap_above=-7.237e-05  truncated triangle t=0.0218
+  F=0.069441850947  P_5=0.305581490531  gap_above=-2.593e-06  truncated triangle t=0.4990
+  F=0.069444278443  P_5=0.305557215574  gap_above=-1.660e-07  truncated triangle t=0.0010
+  F=0.069444444444  P_5=0.305555555556  gap_above=-5.274e-16  regular 3-gon
+  F=0.069444444444  P_5=0.305555555556  gap_above=-4.025e-16  3-gon, vertex x1.20
+  F=0.069444444444  P_5=0.305555555556  gap_above=-8.327e-17  random#27 (3 vertices)
+  F=0.069444444444  P_5=0.305555555556  gap_above=-6.939e-17  Minkowski (1-t)T + tD, t=0.000
+  F=0.069444444444  P_5=0.305555555556  gap_above=+1.388e-16  3-gon, vertex x1.50
+  F=0.069444444444  P_5=0.305555555556  gap_above=+1.388e-16  3-gon, vertex x2.00
+  F=0.069444444444  P_5=0.305555555556  gap_above=+2.637e-16  3-gon, vertex x1.05
+  F=0.069444444444  P_5=0.305555555556  gap_above=+3.608e-16  3-gon, vertex x3.00
+  F=0.069444444444  P_5=0.305555555556  gap_above=+3.608e-16  3-gon, vertex x6.00
+
+violations of the conjectured window (tol 1e-12): 0
+
+=== direct optimisation over convex polygons (Nelder-Mead on the hull) ===
+  max over <= 3-gons: F = 0.069444444444  (triangle 0.069444444444, disk 0.064381168773)  P_5 = 0.305555555556
+  min over <= 3-gons: F = 0.069444444444  (triangle 0.069444444444, disk 0.064381168773)  P_5 = 0.305555555556
+  max over <= 4-gons: F = 0.069444444444  (triangle 0.069444444444, disk 0.064381168773)  P_5 = 0.305555555556
+  min over <= 4-gons: F = 0.065972222222  (triangle 0.069444444444, disk 0.064381168773)  P_5 = 0.340277777778
+  max over <= 5-gons: F = 0.069444444444  (triangle 0.069444444444, disk 0.064381168773)  P_5 = 0.305555555556
+  min over <= 5-gons: F = 0.065021154432  (triangle 0.069444444444, disk 0.064381168773)  P_5 = 0.349788455683
+  max over <= 6-gons: F = 0.069444444444  (triangle 0.069444444444, disk 0.064381168773)  P_5 = 0.305555555556
+  min over <= 6-gons: F = 0.064686213992  (triangle 0.069444444444, disk 0.064381168773)  P_5 = 0.353137860082
+  max over <= 8-gons: F = 0.069444444444  (triangle 0.069444444444, disk 0.064381168773)  P_5 = 0.305555555556
+  min over <= 8-gons: F = 0.064476486054  (triangle 0.069444444444, disk 0.064381168773)  P_5 = 0.355235139457
+  max over <= 10-gons: F = 0.069444444444  (triangle 0.069444444444, disk 0.064381168773)  P_5 = 0.305555555556
+  min over <= 10-gons: F = 0.064440631395  (triangle 0.069444444444, disk 0.064381168773)  P_5 = 0.355593686049
+
+wrote ../results/n5_landscape.json  (129s)

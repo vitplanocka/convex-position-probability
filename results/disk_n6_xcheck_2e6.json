@@ -1,0 +1,13 @@
+{
+ "body": "disk",
+ "n": 6,
+ "samples": 2000000,
+ "seed": 506,
+ "p_hat": 0.1341405,
+ "std_err": 0.00024098425909149129,
+ "hits": 268281,
+ "seconds": 4.868784189224243,
+ "dim": 2,
+ "p_hat_testerA": 0.1341405,
+ "testers_agree": true
+}

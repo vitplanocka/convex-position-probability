@@ -1,0 +1,17 @@
+exact E[A_3^2] (covariance-determinant route):
+  square    0.010416667
+  triangle  0.013888889
+  disk      0.009498861
+  pentagon  0.009824045
+  hexagon   0.009645062
+square should be 1/96 = 0.010416666666666666 , triangle 1/72 = 0.013888888888888888 , disk 3/(32pi^2) = 0.009498860966469166
+square    E[A3]=0.076466+-4.8e-05  E[A4]=0.152727+-6.5e-05  E[A4]/E[A3]=1.99732  E[A3^2]=0.010430+-1.2e-05 (exact 0.010417)
+          P5 via identity = 0.3402778   exact ref 0.3402778
+triangle  E[A3]=0.083377+-5.9e-05  E[A4]=0.166546+-7.9e-05  E[A4]/E[A3]=1.99749  E[A3^2]=0.013883+-2.1e-05 (exact 0.013889)
+          P5 via identity = 0.3055556   exact ref 0.3055556
+disk      E[A3]=0.073964+-4.5e-05  E[A4]=0.147696+-6.1e-05  E[A4]/E[A3]=1.99686  E[A3^2]=0.009519+-1.1e-05 (exact 0.009499)
+          P5 via identity = 0.3561883   exact ref 0.3561883
+pentagon  E[A3]=0.074869+-4.6e-05  E[A4]=0.149721+-6.2e-05  E[A4]/E[A3]=1.99975  E[A3^2]=0.009833+-1.1e-05 (exact 0.009824)
+          P5 via identity = 0.3495458   (P4 from MC here)
+hexagon   E[A3]=0.074357+-4.5e-05  E[A4]=0.148613+-6.2e-05  E[A4]/E[A3]=1.99865  E[A3^2]=0.009651+-1.1e-05 (exact 0.009645)
+          P5 via identity = 0.3528821   (P4 from MC here)

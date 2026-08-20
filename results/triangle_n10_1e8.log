@@ -1,0 +1,12 @@
+numba: True
+{
+ "body": "triangle",
+ "n": 10,
+ "samples": 100000000,
+ "seed": 210,
+ "p_hat": 9.642e-05,
+ "std_err": 9.818895211967586e-07,
+ "hits": 9642,
+ "seconds": 16.36381435394287,
+ "dim": 2
+}

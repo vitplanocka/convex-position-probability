@@ -1,0 +1,37 @@
+=== (A) square, P_4 = 25/36 exactly, 100,000,000 samples per seed, 12 independent seeds ===
+  seed 9001: p_hat=0.694394610 +- 4.6e-05  z=-1.08
+  seed 9002: p_hat=0.694438000 +- 4.6e-05  z=-0.14
+  seed 9003: p_hat=0.694466230 +- 4.6e-05  z=+0.47
+  seed 9004: p_hat=0.694531280 +- 4.6e-05  z=+1.89
+  seed 9005: p_hat=0.694443320 +- 4.6e-05  z=-0.02
+  seed 9006: p_hat=0.694434930 +- 4.6e-05  z=-0.21
+  seed 9007: p_hat=0.694448510 +- 4.6e-05  z=+0.09
+  seed 9008: p_hat=0.694508020 +- 4.6e-05  z=+1.38
+  seed 9009: p_hat=0.694402480 +- 4.6e-05  z=-0.91
+  seed 9010: p_hat=0.694457880 +- 4.6e-05  z=+0.29
+  seed 9011: p_hat=0.694359870 +- 4.6e-05  z=-1.84
+  seed 9012: p_hat=0.694389830 +- 4.6e-05  z=-1.19
+  mean z = -0.106 +- 0.289   sd = 1.065
+  => NO evidence of bias
+
+=== (B) many bodies, one FRESH common seed (n=5, 100,000,000 samples) ===
+  [old seed 303] square    z=+0.91
+  [old seed 303] triangle  z=+0.22
+  [old seed 303] disk      z=-0.52
+  [old seed 303] pentagon  z=-1.30
+  [old seed 303] hexagon   z=+0.14
+  [old seed 303] octagon   z=+1.18
+  [old seed 303] halfdisk  z=-0.15
+  [old seed 303] stadium   z=+2.08
+  [old seed 303] mean z over bodies = +0.317  sd = 1.054
+  [fresh seed 555] square    z=-0.42
+  [fresh seed 555] triangle  z=-0.90
+  [fresh seed 555] disk      z=+1.86
+  [fresh seed 555] pentagon  z=+0.72
+  [fresh seed 555] hexagon   z=-0.08
+  [fresh seed 555] octagon   z=-0.56
+  [fresh seed 555] halfdisk  z=-0.33
+  [fresh seed 555] stadium   z=-1.84
+  [fresh seed 555] mean z over bodies = -0.193  sd = 1.102
+
+wrote ../results/A3_bias_check.json

@@ -1,0 +1,9 @@
+numba: True
+square_n4    exact=0.694444444 routeM=0.694231694 +- 1.45e-04 z=-1.47 OK (0.2s)
+square_n5    exact=0.340277778 routeM=0.340455200 +- 2.46e-04 z=+0.72 OK (0.2s)
+square_n6    exact=0.122500000 routeM=0.122163212 +- 2.42e-04 z=-1.39 OK (0.3s)
+triangle_n4  exact=0.666666667 routeM=0.666596716 +- 1.36e-04 z=-0.51 OK (0.2s)
+triangle_n5  exact=0.305555556 routeM=0.305536548 +- 2.76e-04 z=-0.07 OK (0.4s)
+triangle_n6  exact=0.101111111 routeM=0.101324890 +- 5.48e-04 z=+0.39 OK (0.9s)
+disk_n4      exact=0.704479881 routeM=0.704555325 +- 7.34e-05 z=+1.03 OK (0.4s)
+ROUTE M: ALL ANCHORS OK

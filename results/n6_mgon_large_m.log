@@ -1,0 +1,43 @@
+multiprocessing.pool.RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/multiprocessing/pool.py", line 125, in worker
+    result = (True, func(*args, **kwds))
+                    ^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/multiprocessing/pool.py", line 48, in mapstar
+    return list(map(*args))
+           ^^^^^^^^^^^^^^^^
+  File "/home/vit-planocka/math/convex-position-probability/src/extend_a4.py", line 15, in one
+    _, a = TC.two_chord_polygon(Vf, 36, 36, 6, q, workers=3, grade=1, dtname="ld")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vit-planocka/math/convex-position-probability/src/n6_twochord_polygon.py", line 391, in two_chord_polygon
+    with mp.Pool(workers, initializer=_init,
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/multiprocessing/context.py", line 119, in Pool
+    return Pool(processes, initializer, initargs, maxtasksperchild,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/multiprocessing/pool.py", line 215, in __init__
+    self._repopulate_pool()
+  File "/usr/lib/python3.12/multiprocessing/pool.py", line 306, in _repopulate_pool
+    return self._repopulate_pool_static(self._ctx, self.Process,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/multiprocessing/pool.py", line 329, in _repopulate_pool_static
+    w.start()
+  File "/usr/lib/python3.12/multiprocessing/process.py", line 118, in start
+    assert not _current_process._config.get('daemon'), \
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: daemonic processes are not allowed to have children
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/vit-planocka/math/convex-position-probability/src/extend_a4.py", line 28, in <module>
+    res = pool.map(one, ms)
+          ^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/multiprocessing/pool.py", line 367, in map
+    return self._map_async(func, iterable, mapstar, chunksize).get()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/multiprocessing/pool.py", line 774, in get
+    raise self._value
+AssertionError: daemonic processes are not allowed to have children

@@ -1,0 +1,14 @@
+{
+ "window": [
+  "0.101111111111111",
+  "0.13430938635711"
+ ],
+ "rows": [
+  {
+   "body": "triangle(right)",
+   "P6": "0.10111111111111",
+   "below_tri": false,
+   "above_disk": false
+  }
+ ]
+}

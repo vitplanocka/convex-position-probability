@@ -1,0 +1,11 @@
+numba: True
+square_n4    n=4 exact=0.694444444 mc=0.694377000 +- 1.03e-04  z=-0.65  testersAgree=True  OK  (2.7s)
+square_n5    n=5 exact=0.340277778 mc=0.339957900 +- 1.06e-04  z=-3.02  testersAgree=True  OK  (9.7s)
+square_n6    n=6 exact=0.122500000 mc=0.122459000 +- 7.33e-05  z=-0.56  testersAgree=True  OK  (32.8s)
+triangle_n4  n=4 exact=0.666666667 mc=0.666863000 +- 1.05e-04  z=+1.86  testersAgree=True  OK  (3.2s)
+triangle_n5  n=5 exact=0.305555556 mc=0.305473650 +- 1.03e-04  z=-0.80  testersAgree=True  OK  (10.9s)
+triangle_n6  n=6 exact=0.101111111 mc=0.101122650 +- 6.74e-05  z=+0.17  testersAgree=True  OK  (34.5s)
+disk_n4      n=4 exact=0.704479881 mc=0.704465800 +- 1.02e-04  z=-0.14  testersAgree=True  OK  (3.9s)
+cube3d_n5    n=5 exact=0.930786121 mc=0.930786900 +- 5.68e-05  z=+0.01  testersAgree=True  OK  (21.6s)
+ball3d_n5    n=5 exact=0.937062937 mc=0.937075300 +- 5.43e-05  z=+0.23  testersAgree=True  OK  (26.4s)
+ALL ANCHORS OK

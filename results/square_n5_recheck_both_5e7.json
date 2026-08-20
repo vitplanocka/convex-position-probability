@@ -1,0 +1,13 @@
+{
+ "body": "square",
+ "n": 5,
+ "samples": 50000000,
+ "seed": 31337,
+ "p_hat": 0.3403399,
+ "std_err": 6.700875352787724e-05,
+ "hits": 17016995,
+ "seconds": 27.80383014678955,
+ "dim": 2,
+ "p_hat_testerA": 0.3403399,
+ "testers_agree": true
+}

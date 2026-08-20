@@ -1,0 +1,14 @@
+numba: True
+{
+ "body": "disk",
+ "n": 5,
+ "samples": 2000000,
+ "seed": 505,
+ "p_hat": 0.3564385,
+ "std_err": 0.0003386665732824469,
+ "hits": 712877,
+ "seconds": 2.1810131072998047,
+ "dim": 2,
+ "p_hat_testerA": 0.3564385,
+ "testers_agree": true
+}

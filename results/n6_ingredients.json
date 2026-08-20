@@ -1,0 +1,40 @@
+{
+ "rows": [
+  {
+   "body": "triangle",
+   "EA5": "43/180",
+   "EA33": "31/9000",
+   "EA42": "181/4500",
+   "EA42_convex": "119/4500",
+   "P6": "91/900",
+   "P6_decimal": 0.10111111111111111,
+   "loop_ok": true,
+   "P6_source": "Valtr 1996"
+  },
+  {
+   "body": "square",
+   "EA5": "79/360",
+   "EA33": "137/72000",
+   "EA42": "859/27000",
+   "EA42_convex": "1307/54000",
+   "P6": "49/400",
+   "P6_decimal": 0.1225,
+   "loop_ok": true,
+   "P6_source": "Valtr 1995"
+  },
+  {
+   "body": "disk",
+   "EA5": "(-23023 + 16800*pi**2)/(6912*pi**4)",
+   "EA33": "1001/(6400*pi**4)",
+   "EA42": "(2400*pi**2 + 31031)/(19200*pi**4)",
+   "EA42_convex": "(19019 + 2400*pi**2)/(19200*pi**4)",
+   "P6": "-(-473473 + 146400*pi**2)/(11520*pi**4) + 1",
+   "P6_decimal": 0.13430938635710993,
+   "loop_ok": true,
+   "P6_source": "Marckert 2017"
+  }
+ ],
+ "all_loops_ok": true,
+ "decomposition": "P_6 = 1 - 6 E[A_5] + 15 E[A_4^2] - 20 E[A_3^3]",
+ "note": "E[A_5], E[A_3^3] exact via Blaschke-Petkantschin width route; E[A_4^2] Valtr/Marckert-implied, MC-confirmed (rel.diff ~1e-4)."
+}

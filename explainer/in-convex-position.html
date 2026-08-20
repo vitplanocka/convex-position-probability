@@ -1,0 +1,394 @@
+<title>In Convex Position</title>
+<style>
+:root{
+  --ground:#F3F5F7; --surface:#FFFFFF; --ink:#16202B; --muted:#5B6B7B; --rule:#D5DCE3; --rule-soft:#E6EBF0;
+  --accent:#2B4FB8; --accent-soft:#DDE5FA; --bad:#C93B2A; --bad-soft:#F8DDD8; --good:#2E7D5B; --good-soft:#D9EFE4;
+  --warn:#9A6B00; --warn-soft:#F6ECC8; --code-bg:#EEF2F6;
+  --grid:#E1E7EE;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#0F151C; --surface:#171F28; --ink:#E7ECF1; --muted:#98A6B5; --rule:#2A3642; --rule-soft:#212C37;
+    --accent:#86A4FF; --accent-soft:#1E2B4A; --bad:#FF7A66; --bad-soft:#4A241F; --good:#5FC493; --good-soft:#193528;
+    --warn:#E3B84A; --warn-soft:#3B3116; --code-bg:#1D2731; --grid:#243039;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#0F151C; --surface:#171F28; --ink:#E7ECF1; --muted:#98A6B5; --rule:#2A3642; --rule-soft:#212C37;
+  --accent:#86A4FF; --accent-soft:#1E2B4A; --bad:#FF7A66; --bad-soft:#4A241F; --good:#5FC493; --good-soft:#193528;
+  --warn:#E3B84A; --warn-soft:#3B3116; --code-bg:#1D2731; --grid:#243039;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:var(--ground);color:var(--ink);font-family:Charter,"Iowan Old Style","Palatino Linotype","Book Antiqua",Georgia,serif;font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased}
+.disp{font-family:"Bahnschrift SemiCondensed",Bahnschrift,"Avenir Next Condensed","Roboto Condensed","Helvetica Neue","Arial Narrow",Arial,sans-serif;letter-spacing:-0.01em}
+.mono{font-family:"Cascadia Mono","SF Mono",Consolas,Menlo,monospace;font-variant-numeric:tabular-nums}
+.wrap{max-width:46rem;margin:0 auto;padding:0 1.25rem}
+.wide{max-width:64rem;margin:2rem auto;padding:0 1.25rem}
+header.mast{padding:3.5rem 0 1.5rem;border-bottom:1px solid var(--rule)}
+.eyebrow{font-family:"Bahnschrift SemiCondensed",Bahnschrift,"Avenir Next Condensed","Roboto Condensed","Arial Narrow",Arial,sans-serif;text-transform:uppercase;letter-spacing:.14em;font-size:.72rem;color:var(--muted);font-weight:600}
+h1{font-size:clamp(2.6rem,6vw,4.2rem);line-height:.98;margin:.5rem 0 .75rem;font-weight:700;text-wrap:balance}
+h1 .thin{font-weight:300;color:var(--muted)}
+.lede{font-size:1.2rem;line-height:1.45;color:var(--ink);max-width:40rem;margin:0 0 1rem}
+.meta{display:flex;flex-wrap:wrap;gap:.5rem 1.5rem;color:var(--muted);font-size:.85rem}
+h2{font-size:1.9rem;line-height:1.1;margin:3rem 0 .75rem;font-weight:700;text-wrap:balance}
+h3{font-size:1.15rem;margin:1.75rem 0 .4rem;font-weight:700}
+p{margin:0 0 1rem}
+a{color:var(--accent);text-decoration-thickness:1px;text-underline-offset:2px}
+.sec-label{display:flex;align-items:baseline;gap:.75rem;margin-top:3rem}
+.sec-label .eyebrow{white-space:nowrap}
+.sec-label hr{flex:1;border:0;border-top:1px solid var(--rule)}
+.plate{background:var(--surface);border:1px solid var(--rule);border-radius:4px;padding:1rem 1rem 1.1rem}
+.plate .cap{font-size:.85rem;color:var(--muted);margin:.6rem 0 0}
+.plate .cap b{color:var(--ink);font-weight:600}
+.controls{display:flex;flex-wrap:wrap;gap:.6rem 1rem;align-items:center;margin-bottom:.75rem;font-family:"Bahnschrift SemiCondensed",Bahnschrift,"Avenir Next Condensed","Roboto Condensed","Arial Narrow",Arial,sans-serif;font-size:.9rem}
+.controls label{display:flex;align-items:center;gap:.4rem;color:var(--muted)}
+.controls select,.controls input[type=range]{accent-color:var(--accent)}
+.controls select{background:var(--surface);color:var(--ink);border:1px solid var(--rule);border-radius:3px;padding:.25rem .4rem;font:inherit}
+button{font:inherit;font-family:"Bahnschrift SemiCondensed",Bahnschrift,"Avenir Next Condensed","Roboto Condensed","Arial Narrow",Arial,sans-serif;font-size:.9rem;padding:.35rem .8rem;border-radius:3px;border:1px solid var(--accent);background:var(--accent);color:#fff;cursor:pointer;letter-spacing:.02em}
+button.ghost{background:transparent;color:var(--accent)}
+button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+button:disabled{opacity:.5;cursor:default}
+.two{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(16rem,.9fr);gap:1rem;align-items:start}
+@media (max-width:760px){.two{grid-template-columns:1fr}}
+canvas{display:block;width:100%;height:auto;background:var(--surface)}
+.stat{display:grid;grid-template-columns:auto 1fr;gap:.25rem .8rem;font-size:.92rem;align-items:baseline}
+.stat dt{color:var(--muted);font-family:"Bahnschrift SemiCondensed",Bahnschrift,"Avenir Next Condensed","Roboto Condensed","Arial Narrow",Arial,sans-serif;font-size:.8rem;text-transform:uppercase;letter-spacing:.08em}
+.stat dd{margin:0}
+.big{font-size:1.6rem;line-height:1.1}
+.pill{display:inline-block;padding:.05rem .5rem;border-radius:999px;font-size:.75rem;font-family:"Bahnschrift SemiCondensed",Bahnschrift,"Avenir Next Condensed","Roboto Condensed","Arial Narrow",Arial,sans-serif;letter-spacing:.06em;text-transform:uppercase;font-weight:600;vertical-align:middle}
+.pill.ok{background:var(--good-soft);color:var(--good)}
+.pill.open{background:var(--warn-soft);color:var(--warn)}
+.pill.bad{background:var(--bad-soft);color:var(--bad)}
+.pill.acc{background:var(--accent-soft);color:var(--accent)}
+.legend{display:flex;gap:1.2rem;flex-wrap:wrap;font-size:.82rem;color:var(--muted);margin-top:.5rem;font-family:"Bahnschrift SemiCondensed",Bahnschrift,"Avenir Next Condensed","Roboto Condensed","Arial Narrow",Arial,sans-serif}
+.legend i{display:inline-block;width:.7rem;height:.7rem;border-radius:50%;vertical-align:-1px;margin-right:.35rem}
+table{border-collapse:collapse;width:100%;font-size:.92rem}
+.tscroll{overflow-x:auto}
+th,td{padding:.45rem .6rem;border-bottom:1px solid var(--rule-soft);text-align:left;vertical-align:top}
+th{font-family:"Bahnschrift SemiCondensed",Bahnschrift,"Avenir Next Condensed","Roboto Condensed","Arial Narrow",Arial,sans-serif;font-size:.78rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:600;border-bottom:1px solid var(--rule)}
+td.num{font-family:"Cascadia Mono","SF Mono",Consolas,Menlo,monospace;font-variant-numeric:tabular-nums;font-size:.85rem;white-space:nowrap}
+.formula{font-family:"Cascadia Mono","SF Mono",Consolas,Menlo,monospace;font-size:.9rem;background:var(--code-bg);padding:.7rem .9rem;border-radius:3px;overflow-x:auto;margin:.6rem 0 1rem;line-height:1.5}
+.callout{border-left:3px solid var(--accent);padding:.6rem 1rem;background:var(--surface);margin:1.25rem 0;border-radius:0 3px 3px 0}
+.callout.warn{border-left-color:var(--warn)}
+.callout .eyebrow{margin-bottom:.2rem}
+ol.plan{padding-left:1.3rem}
+ol.plan li{margin-bottom:.7rem}
+ol.plan li b{font-weight:700}
+.refs{font-size:.9rem}
+.refs li{margin-bottom:.45rem}
+.refs ol{padding-left:1.4rem}
+.status{display:grid;grid-template-columns:repeat(auto-fit,minmax(11rem,1fr));gap:.75rem;margin:1rem 0}
+.status .cell{background:var(--surface);border:1px solid var(--rule);border-radius:4px;padding:.7rem .85rem}
+.status .cell .k{font-family:"Bahnschrift SemiCondensed",Bahnschrift,"Avenir Next Condensed","Roboto Condensed","Arial Narrow",Arial,sans-serif;font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted)}
+.status .cell .v{font-size:1.05rem;margin-top:.15rem}
+footer{border-top:1px solid var(--rule);margin-top:3rem;padding:1.5rem 0 3rem;color:var(--muted);font-size:.85rem}
+.small{font-size:.85rem;color:var(--muted)}
+sup,sub{line-height:0}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+</style>
+
+<header class="mast">
+  <div class="wrap">
+    <div class="eyebrow">Math campaign &middot; Candidate 2 &middot; opened 2026-08-18</div>
+    <h1 class="disp">In Convex <span class="thin">Position</span></h1>
+    <p class="lede">Throw <i>n</i> random points into a triangle, a square, a disk. How often is <em>every one of them</em> a corner of the shape they span? Sylvester asked it for four points in 1864. It is exactly solved for a few bodies (and, for the disk, up to eight points), the &ldquo;which body is best/worst&rdquo; question is settled for four and five points and open from six on. This page tracks a campaign chipping at the six-point case. This page explains the problem, what is known, and how the campaign attacks it.</p>
+    <div class="meta">
+      <span>Folder: <span class="mono">Math/convex-position-probability/</span></span>
+      <span>Server: <span class="mono">~/math/convex-position-probability/</span></span>
+      <span>Predecessor: real-rooted random polynomials (4 theorems, Lean-checked)</span>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="sec-label"><span class="eyebrow">1 &middot; The question</span><hr></div>
+  <h2 class="disp">Every point a vertex</h2>
+  <p>Take a convex body <i>K</i> in the plane (a triangle, a square, a disk &mdash; anything convex) and drop <i>n</i> points into it independently and uniformly at random. Stretch a rubber band around them: that is their <em>convex hull</em>. The points are <strong>in convex position</strong> when the band touches all <i>n</i> of them &mdash; no point is hiding inside. We write</p>
+  <div class="formula">P<sub>K</sub>(n)  =  P( n i.i.d. uniform points in K are in convex position )</div>
+  <p>For <i>n</i> = 3 this is always 1 (three points always form a triangle). For <i>n</i> = 4 the only way to fail is that one point lands inside the triangle of the other three &mdash; that is <strong>Sylvester&rsquo;s four-point problem</strong>. For larger <i>n</i>, failure means the hull has fewer than <i>n</i> corners.</p>
+  <p>Two things make this tractable where the 3&times;3 eigenvalue problem was not. First, the event is <strong>affine-invariant</strong>: stretch, shear or rotate <i>K</i> and the probability does not change, so &ldquo;square&rdquo; really means every parallelogram and &ldquo;disk&rdquo; means every ellipse. Second, the underlying integrals live in 2<i>n</i> dimensions but factor through low-dimensional geometry (areas of triangles, lengths of chords), which is why exact answers exist at all.</p>
+</div>
+
+<div class="wide">
+  <div class="plate">
+    <div class="controls">
+      <label>Body <select id="body">
+        <option value="triangle">triangle</option>
+        <option value="square">square</option>
+        <option value="disk" selected>disk</option>
+        <option value="pentagon">regular pentagon</option>
+      </select></label>
+      <label>n <input id="nrange" type="range" min="4" max="10" value="5" step="1"> <span id="nval" class="mono">5</span></label>
+      <button id="btnNew">New sample</button>
+      <button id="btnRun" class="ghost">Run 20&thinsp;000 trials</button>
+      <button id="btnReset" class="ghost">Reset tally</button>
+    </div>
+    <div class="two">
+      <div><canvas id="cv" width="640" height="480" aria-label="random points in a convex body with their convex hull"></canvas>
+        <div class="legend"><span><i style="background:var(--ink)"></i>hull vertex</span><span><i style="background:var(--bad)"></i>interior point (spoils convex position)</span><span><i style="background:var(--accent);border-radius:0;height:2px;width:1rem;vertical-align:3px"></i>convex hull</span></div>
+      </div>
+      <div>
+        <dl class="stat">
+          <dt>This sample</dt><dd id="thisSample" class="disp big">&mdash;</dd>
+          <dt>Trials</dt><dd id="trials" class="mono">0</dd>
+          <dt>In convex position</dt><dd id="hits" class="mono">0</dd>
+          <dt>Estimate</dt><dd id="phat" class="mono">&mdash;</dd>
+          <dt>Reference value</dt><dd id="exact" class="mono">&mdash;</dd>
+          <dt>Source</dt><dd id="exactSrc" class="small">&mdash;</dd>
+        </dl>
+      </div>
+    </div>
+    <p class="cap"><b>Plate 1.</b> A live simulation in your browser. Interior points are ringed in red; when there are none, the sample counts as a hit. The reference value shown is Valtr&rsquo;s formula (triangle, square), Marckert&rsquo;s exact disk values (n &le; 8), Alikoski / this campaign for the pentagon (n = 4, 5), or &ldquo;open&rdquo; when no closed form is known. In-browser Monte Carlo is for intuition; the campaign&rsquo;s numbers come from the validated numpy/numba pipeline on the compute server.</p>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="sec-label"><span class="eyebrow">2 &middot; What is known exactly</span><hr></div>
+  <h2 class="disp">The anchors we already own</h2>
+  <p>Before any new number is believed, the campaign&rsquo;s code has to reproduce every one of these through the same code path (a rule inherited from the previous campaign, where it caught a 345&times;-too-optimistic error bar). Below, &ldquo;verified&rdquo; means we recomputed the value ourselves from the stated formula and reproduced it by Monte Carlo with two structurally independent testers.</p>
+  <div class="tscroll">
+  <table>
+    <thead><tr><th>Body</th><th>n</th><th>Exact value</th><th>Decimal</th><th>Who</th><th>Status</th></tr></thead>
+    <tbody id="anchorTable">
+      <tr><td>triangle</td><td>4</td><td class="num">2/3</td><td class="num">0.666667</td><td>Sylvester / Woolhouse (1860s); Valtr n=4</td><td><span class="pill ok">verified</span></td></tr>
+      <tr><td>square (any parallelogram)</td><td>4</td><td class="num">25/36</td><td class="num">0.694444</td><td>classical; Valtr n=4</td><td><span class="pill ok">verified</span></td></tr>
+      <tr><td>disk (any ellipse)</td><td>4</td><td class="num">1 &minus; 35/(12&pi;&sup2;)</td><td class="num">0.704480</td><td>Woolhouse / Crofton; Blaschke extremal</td><td><span class="pill ok">verified</span></td></tr>
+      <tr><td>regular m-gon</td><td>4</td><td class="num">1 &minus; (9cos&sup2;w + 52cos w + 44)/(9m&sup2;sin&sup2;w), w = 2&pi;/m</td><td class="num">m=5: 4/5 &minus; 2&radic;5/45 = 0.700619<br>m=6: 683/972 = 0.702675</td><td>Alikoski 1939 (reproduced to 50 digits by route P)</td><td><span class="pill ok">verified</span></td></tr>
+      <tr><td>regular m-gon</td><td>5</td><td class="num">1 &minus; 5(15cos&sup2;w + 92cos w + 76)/(36m&sup2;sin&sup2;w)</td><td class="num">m=5: 7/12 &minus; 47&radic;5/450 = 0.349788<br>m=6: 1373/3888 = 0.353138</td><td>this campaign (Alikoski + identity II)</td><td><span class="pill ok">verified</span></td></tr>
+      <tr><td>square (any parallelogram)</td><td>all n</td><td class="num">[ C(2n&minus;2, n&minus;1) / n! ]&sup2;</td><td class="num">n=5: 49/144 = 0.340278<br>n=6: 49/400 = 0.1225<br>n=7: 121/3600 = 0.033611</td><td>Valtr, DCG 1995</td><td><span class="pill ok">verified</span></td></tr>
+      <tr><td>triangle</td><td>all n</td><td class="num">2<sup>n</sup>(3n&minus;3)! / [ (2n)! ((n&minus;1)!)&sup3; ]</td><td class="num">n=5: 11/36 = 0.305556<br>n=6: 91/900 = 0.101111<br>n=7: 17/675 = 0.025185</td><td>Valtr, Combinatorica 1996</td><td><span class="pill ok">verified</span></td></tr>
+      <tr><td>disk</td><td>5</td><td class="num">1 &minus; 305/(48&pi;&sup2;)</td><td class="num">0.356188</td><td>Marckert 2017, Table (7); re-derived here independently 2026-08-18 (three routes agree)</td><td><span class="pill ok">verified</span></td></tr>
+      <tr><td>disk</td><td>6, 7, 8</td><td class="num">explicit in &pi;<sup>&minus;2</sup>, &pi;<sup>&minus;4</sup>, &pi;<sup>&minus;6</sup>, e.g. P(6) = 1 &minus; (146400&pi;&sup2; &minus; 473473)/(11520&pi;<sup>4</sup>)</td><td class="num">0.134309, 0.039091, 0.009034</td><td>Marckert 2017, Table (7); our MC agrees, |z| &le; 1.6</td><td><span class="pill ok">verified</span></td></tr>
+      <tr><td>disk</td><td>n &ge; 9</td><td class="num">algorithmic (recursion, no closed form)</td><td class="num" id="diskLit">n=9: 0.001698 (MC)</td><td>Marckert 2017</td><td><span class="pill open">no closed form</span></td></tr>
+      <tr><td>cube (3-D)</td><td>5</td><td class="num">1 &minus; 5(3977/216000 &minus; &pi;&sup2;/2160)</td><td class="num">0.930786</td><td>Zinani 2003 (E[vol tetrahedron])</td><td><span class="pill ok">verified</span></td></tr>
+      <tr><td>ball (3-D)</td><td>5</td><td class="num">1 &minus; 5&middot;9/715 = 134/143</td><td class="num">0.937063</td><td>classical (Kingman / Hostinsky)</td><td><span class="pill ok">verified</span></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="small">Sylvester&rsquo;s four-point value and the five-point 3-D values all come from the same identity: for d+2 points in a d-dimensional body, P(convex position) = 1 &minus; (d+2)&middot;E[vol of a random simplex]/vol(K), because the only way to fail is that one point falls inside the simplex of the others.</p>
+
+  <h3>Six points: the ingredient table</h3>
+  <p>P(6) needs three hull-area moments, all now computed here from first principles: E[A<sub>5</sub>] and E[A<sub>3</sub>&sup3;] from the Blaschke&ndash;Petkantschin width integral, and E[A<sub>4</sub>&sup2;] from a two-chord integral (below). Every row&rsquo;s P(6) closes the loop against the known value.</p>
+  <div class="tscroll">
+  <table>
+    <thead><tr><th>body</th><th>E[A<sub>5</sub>]</th><th>E[A<sub>3</sub>&sup3;]</th><th>E[A<sub>4</sub>&sup2;]</th><th>P(6)</th><th>closes vs</th></tr></thead>
+    <tbody>
+      <tr><td>triangle</td><td class="num">43/180</td><td class="num">31/9000</td><td class="num">181/4500</td><td class="num">91/900 = 0.101111</td><td>Valtr <span class="pill ok">exact</span></td></tr>
+      <tr><td>square</td><td class="num">79/360</td><td class="num">137/72000</td><td class="num">859/27000</td><td class="num">49/400 = 0.122500</td><td>Valtr <span class="pill ok">exact</span></td></tr>
+      <tr><td>disk</td><td class="num">7(2400&pi;&sup2;&minus;3289)/(6912&pi;<sup>4</sup>)</td><td class="num">1001/(6400&pi;<sup>4</sup>)</td><td class="num">(2400&pi;&sup2;+31031)/(19200&pi;<sup>4</sup>)</td><td class="num">0.134309</td><td>Marckert <span class="pill ok">exact</span></td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3>Six points across the regular polygons &mdash; new exact values</h3>
+  <p>With E[A<sub>4</sub>&sup2;&middot;1<sub>conv</sub>] now reachable for any polygon (the diagonal cross-product turns it into a line-pair integral, validated on the disk to 12 digits and reproducing 119/4500 and 1307/54000 for the triangle and square <em>independently of Valtr</em>), P(6) follows in closed form for every regular polygon &mdash; the six-point analogue of the P(5) formula, and going beyond Marckert&rsquo;s disk-only n = 6 result.</p>
+  <div class="tscroll">
+  <table>
+    <thead><tr><th>body</th><th>P(6) exact</th><th>decimal</th></tr></thead>
+    <tbody>
+      <tr><td>triangle (m=3)</td><td class="num">91/900</td><td class="num">0.101111</td></tr>
+      <tr><td>square (m=4)</td><td class="num">49/400</td><td class="num">0.122500</td></tr>
+      <tr><td>pentagon</td><td class="num">8941/22500 &minus; 1349&radic;5/11250</td><td class="num">0.129248</td></tr>
+      <tr><td>hexagon</td><td class="num">461299/3499200</td><td class="num">0.131830</td></tr>
+      <tr><td>octagon</td><td class="num">30103/61440 &minus; 116141&radic;2/460800</td><td class="num">0.133516</td></tr>
+      <tr><td>disk (m &rarr; &infin;)</td><td class="num">1 &minus; (146400&pi;&sup2;&minus;473473)/(11520&pi;<sup>4</sup>)</td><td class="num">0.134309</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="small">P(6) is strictly increasing in m, from the triangle up to the disk (values also verified by direct 6&times;10<sup>8</sup>-sample Monte Carlo) &mdash; the ordering the still-open n &ge; 6 extremal conjecture predicts, now on exact values. No single closed form in m exists (a genuine negative result: an 11-point fit to the P(5)-style shape does not resolve), and the leading large-m correction is of order 1/m<sup>4</sup> with a constant that resisted identification even at 9 digits &mdash; recorded as unidentified rather than forced.</p>
+  <p class="small"><b>Novelty (2026 prior-art check).</b> The exact P(6) for the pentagon, hexagon and octagon, the P(5) regular-polygon formula, the disk triangle-area moments (E[A<sub>3</sub>&sup2;], E[A<sub>3</sub>&sup3;]), the 4-point hull-area second moment E[A<sub>4</sub>&sup2;], and the covariance form of the P(5) identity were <em>not found</em> in the literature (Morin 2024 notes exact regular-polygon formulas &ldquo;are rare&rdquo;; MathWorld says the disk triangle-area distribution is &ldquo;apparently not known exactly&rdquo;) &mdash; the genuine new candidates. By contrast the triangle and square E[A<sub>3</sub>&sup3;] (31/9000, 137/72000) are already published (Reed 1974; Beck 2024), and E[A<sub>4</sub>] = 2E[A<sub>3</sub>] follows from classical Efron&ndash;Buchta identities; those are not claimed as new.</p>
+
+  <h3>A second way to compute the same number</h3>
+  <p>Write A<sub>k</sub> for the area of the hull of k random points as a fraction of |K|. Because the vertex set of the hull of n points is some k-subset in convex position with the other n&minus;k points inside it, the hull-vertex distribution is determined by <em>hull-area moments</em>, and unwinding that gives an alternating identity (Efron for n = 4, Buchta in general):</p>
+  <div class="formula">P<sub>K</sub>(n)  =  &sum;<sub>j=0</sub><sup>n&minus;3</sup> (&minus;1)<sup>j</sup> C(n, j) E[ A<sub>n&minus;j</sub><sup>j</sup> ]<br>e.g.  P(4) = 1 &minus; 4 E[A<sub>3</sub>],   P(5) = 1 &minus; 5 E[A<sub>4</sub>] + 10 E[A<sub>3</sub>&sup2;],   P(6) = 1 &minus; 6 E[A<sub>5</sub>] + 15 E[A<sub>4</sub>&sup2;] &minus; 20 E[A<sub>3</sub>&sup3;]</div>
+  <p>This is our <span class="mono">route M</span> (<span class="mono">src/route_moments.py</span>): estimate the area moments with an exact Jarvis-march hull area &mdash; code that shares nothing with the direct convex-position testers &mdash; and combine. It reproduces all seven planar anchors, and every disk value we publish must agree between the direct route and route M before it is believed. It also says something structural: any body whose hull-area moments are known in closed form has P<sub>K</sub>(n) in closed form.</p>
+
+  <div class="callout">
+    <div class="eyebrow">Day-one result &middot; five points from four</div>
+    <p style="margin:0 0 .6rem">Only two moments enter P(5) = 1 &minus; 5E[A<sub>4</sub>] + 10E[A<sub>3</sub>&sup2;], and both are cheaper than they look. For <em>any</em> four points, twice the area of their hull equals the sum of the areas of the four triangles they span (both diagonal decompositions of a convex quadrilateral; or the outer triangle plus its three pieces), so <b>E[A<sub>4</sub>] = 2E[A<sub>3</sub>]</b> for every body and every i.i.d. law. And E[A<sub>3</sub>&sup2;] is a <em>polynomial</em> moment: (3/2)&middot;det &Sigma;<sub>K</sub>/|K|&sup2; with &Sigma;<sub>K</sub> the covariance of the uniform law on K. Hence, for every planar convex body,</p>
+    <div class="formula" style="margin:.2rem 0 .6rem">P<sub>K</sub>(5) = 1 &minus; 10 E[A<sub>3</sub>(1 &minus; A<sub>3</sub>)] = (5/2) P<sub>K</sub>(4) &minus; 3/2 + 15 det &Sigma;<sub>K</sub>/|K|&sup2;</div>
+    <p style="margin:0">Sylvester&rsquo;s five-point problem reduces to his four-point problem plus the body&rsquo;s inertia. It returns Valtr&rsquo;s 11/36 and 49/144, gives <b>P<sub>disk</sub>(5) = 1 &minus; 305/(48&pi;&sup2;)</b> (which turned out to be in Marckert 2017 &mdash; a good check), a closed form for every regular polygon (table above), and half-disk 0.341070, stadium 0.352809. The identity is not in Marckert&ndash;Rahmani (arXiv:1511.03658 = Mathematika 2021, read in full: its engine is a 5-point &ldquo;comb&rdquo; recursion with no moment identities), and a 2026 prior-art check found it in no other source &mdash; a genuine novelty candidate, though only one step from classical facts.</p>
+  </div>
+  <h3>Why Valtr&rsquo;s formulas exist at all</h3>
+  <p>For the square and triangle the probability is <em>rational</em> for every <i>n</i> &mdash; a striking fact. Valtr proved it by turning the geometry into counting: a convex polygon inside a square decomposes into four monotone chains, and the probability that random points form such chains reduces to counting lattice-path-like objects, giving squares of Catalan-type numbers. Nothing of the sort is available for the disk, whose boundary is not made of straight pieces; that is why the disk sits behind a recursion instead of a formula.</p>
+</div>
+
+<div class="wide">
+  <div class="plate">
+    <canvas id="chart" width="1100" height="440" aria-label="probability of convex position versus n for triangle, square and disk"></canvas>
+    <p class="cap"><b>Plate 2.</b> P<sub>K</sub>(n) on a log scale. Triangle and square are Valtr&rsquo;s exact values; disk n = 4&ndash;8 are exact (Marckert 2017, reproduced here), n = 9, 10 are this campaign&rsquo;s Monte Carlo (error bars smaller than the markers). The three curves fan out but keep their order &mdash; triangle lowest, disk highest &mdash; which is exactly the conjecture in &sect;4.</p>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="sec-label"><span class="eyebrow">3 &middot; Large n</span><hr></div>
+  <h2 class="disp">How fast it dies</h2>
+  <p>P<sub>K</sub>(n) decays faster than any exponential: roughly like <span class="mono">n<sup>&minus;2n</sup></span>. B&aacute;r&aacute;ny (1999) found the exact rate for <em>every</em> convex body:</p>
+  <div class="formula">lim<sub>n&rarr;&infin;</sub>  n&sup2; &middot; P<sub>K</sub>(n)<sup>1/n</sup>  =  e&sup2; A(K)&sup3; / ( 4 |K|&sup3; )</div>
+  <p>where <i>A(K)</i> is the <em>affine perimeter</em> of <i>K</i> &mdash; an affine-invariant length that is largest for ellipses and vanishes for polygons if measured naively, so for polygons B&aacute;r&aacute;ny&rsquo;s theorem is really about the affine perimeter of the largest-affine-perimeter convex subset. The consequence: when points <em>do</em> land in convex position, their hull is with high probability close to a deterministic <strong>limit shape</strong>, the convex curve inside <i>K</i> of maximal affine perimeter. Hilhorst, Calka and Schehr (2008) sharpened the disk asymptotics to several more terms by mapping the problem onto a random-acceleration process. Both are covered, with exact statements, in <span class="mono">LITERATURE.md</span>.</p>
+  <p>For our purposes the lesson is practical: beyond n &asymp; 12 plain Monte Carlo cannot see anything (P is already 10<sup>&minus;5</sup> for the square at n = 12), so &ldquo;small n exactly, large n asymptotically&rdquo; is the natural division of labour, and the interesting open questions live at small n.</p>
+
+  <div class="sec-label"><span class="eyebrow">4 &middot; What is open</span><hr></div>
+  <h2 class="disp">Three doors, one plan</h2>
+  <div class="callout">
+    <div class="eyebrow">Door A &middot; the extremal conjecture &mdash; n = 4, 5 settled, n &ge; 6 open</div>
+    <p style="margin:0">Blaschke (1917) proved that among all convex bodies the triangle <em>minimises</em> and the ellipse <em>maximises</em> Sylvester&rsquo;s four-point probability. The conjecture that <b>P<sub>triangle</sub>(n) &le; P<sub>K</sub>(n) &le; P<sub>ellipse</sub>(n) for every n</b> was proved for n = 5 by Marckert &amp; Rahmani (Mathematika, 2021) and is open for n &ge; 6. Our identity gives a short independent proof of the n = 5 case: it says the conjecture is equivalent to F(K) = E[A<sub>3</sub>(1&minus;A<sub>3</sub>)] being largest for triangles and smallest for ellipses, and a fibre-by-fibre computation with vertical sections shows that under Steiner symmetrisation and shaking the second moment changes by exactly the fraction b<sub>2</sub>/|K| &lt; 1 of the change in the first &mdash; so F inherits Blaschke&rsquo;s monotonicity, with exact gap formulas (verified to 9 digits on the half-disk). Details: <span class="mono">docs/N5_PROOF.md</span>. The n = 6 analogue needs E[A<sub>4</sub>&sup2;] and E[A<sub>3</sub>&sup3;] &mdash; genuinely new objects, and the real open door.</p>
+  </div>
+  <div class="callout">
+    <div class="eyebrow">Door B &middot; six points &mdash; the ingredients, solved</div>
+    <p style="margin:0">P(6) = 1 &minus; 6E[A<sub>5</sub>] + 15E[A<sub>4</sub>&sup2;] &minus; 20E[A<sub>3</sub>&sup3;]. All three moments now have first-principles routes: E[A<sub>3</sub><sup>k</sup>] and E[A<sub>5</sub>] from a width-function integral, and E[A<sub>4</sub>&sup2;&middot;1<sub>conv</sub>] from a two-chord integral built on hull area = &frac12;|diagonal<sub>1</sub> &times; diagonal<sub>2</sub>|. Together they give <em>exact</em> P(6) for every regular polygon (table above), matching Valtr at m = 3, 4 and Marckert&rsquo;s disk in the limit &mdash; the first six-point values for polygons. What stays open is the <em>extremal</em> question at n = 6 (Marckert&ndash;Rahmani proved only n = 5): the exact values show P(6) rising monotonically from triangle to disk, consistent with the conjecture, but a proof needs the machinery pointed at general (non-regular) bodies.</p>
+  </div>
+  <div class="callout">
+    <div class="eyebrow">Door C &middot; three dimensions</div>
+    <p style="margin:0">In 3-D even Sylvester&rsquo;s own problem (5 points) is known exactly for only three bodies (ball, cube, tetrahedron); n = 6 in the ball, and the extremal question (does the simplex minimise, the ball maximise, for all n?) are essentially open. The 5-point values are one-line consequences of expected-tetrahedron-volume results, so new bodies (octahedron, cylinder, regular prisms) are attackable with symbolic integration + high-precision quadrature.</p>
+  </div>
+
+  <div class="sec-label"><span class="eyebrow">5 &middot; The campaign</span><hr></div>
+  <h2 class="disp">How we attack it</h2>
+  <ol class="plan">
+    <li><b>Pipeline first, then numbers.</b> <span class="pill ok">done</span> Two independent testers (triangle/tetrahedron containment in numpy vs. a numba convex-hull count) must agree sample-for-sample; nine exact anchors reproduce at 2&times;10<sup>7</sup> samples on the server. Anything the pipeline says about an unknown value inherits this credibility.</li>
+    <li><b>Map the small-n landscape.</b> <span class="pill ok">done</span> Disk n = 5&ndash;10 at 2&times;10<sup>8</sup> samples (agrees with Marckert&rsquo;s exact n = 5&ndash;8, |z| &le; 1.6); exact P(5) for all regular m-gons; a 561-body scan of the n = 5 extremal window with zero violations; 3-D n = 5 anchors plus the new E[A<sub>5</sub>] = (5/2)E[A<sub>4</sub>] identity in R&sup3;.</li>
+    <li><b>Reproduce a published exact method on a known case</b> before pointing it at an unknown one. <span class="pill ok">done</span> Route P (exact line-space integration for polygons) reproduces Alikoski 1939 to 50 digits and Buchta&rsquo;s 1984 expected-area table as exact rationals; the Efron/edge-count route reproduces Sylvester&rsquo;s disk value to 10<sup>&minus;41</sup>.</li>
+    <li><b>The n = 6 front.</b> <span class="pill ok">ingredients solved</span> All three moments now have first-principles routes (width integral for E[A<sub>3</sub><sup>k</sup>], E[A<sub>5</sub>]; two-chord integral for E[A<sub>4</sub>&sup2;]), giving exact P(6) for every regular polygon &mdash; new values beyond Marckert&rsquo;s disk. Next: point the machinery at non-regular bodies to attack the open n &ge; 6 extremal conjecture, and the R<sup>d</sup> analogues.</li>
+    <li><b>Same evidence bar as before.</b> Nothing is called exact without two structurally independent confirmations; PSLQ hits count only when they come unprompted from many digits; every unverified claim stays labelled UNVERIFIED in the log.</li>
+    <li><b>Deliverables.</b> <span class="mono">LITERATURE.md</span> (multi-agent sweep with adversarial verification), <span class="mono">TASK.md</span> for the autonomous server session, <span class="mono">PROGRESS.md</span> timestamped log, results JSON per run, and eventually a write-up.</li>
+  </ol>
+
+  <div class="sec-label"><span class="eyebrow">6 &middot; Status</span><hr></div>
+  <div class="status" id="statusGrid">
+    <div class="cell"><div class="k">Local folder</div><div class="v">ready</div></div>
+    <div class="cell"><div class="k">Server folder + venv</div><div class="v">ready (numba 0.67)</div></div>
+    <div class="cell"><div class="k">Anchor validation</div><div class="v" id="stValid">9/9 at 2&times;10<sup>7</sup> (server), both testers agree; Valtr n=7&ndash;10 within 2.2&sigma;</div></div>
+    <div class="cell"><div class="k">Literature</div><div class="v" id="stLit">LITERATURE.md written on the server; Marckert 2017 and Marckert&ndash;Rahmani 2021 located; one paper still unread</div></div>
+    <div class="cell"><div class="k">n = 6</div><div class="v" id="stMC">solved for regular polygons: exact P(6) for the pentagon, hexagon, octagon and beyond (all three moments from first principles); P(6) increases triangle&rarr;disk</div></div>
+  </div>
+
+  <div class="sec-label"><span class="eyebrow">7 &middot; Reading list</span><hr></div>
+  <div class="refs" id="refs">
+    <ol>
+      <li>J. J. Sylvester, &ldquo;Problem 1491,&rdquo; <i>Educational Times</i> (1864); the four-point problem. See also W. S. B. Woolhouse and M. W. Crofton for the triangle and disk values.</li>
+      <li>W. Blaschke, &ldquo;&Uuml;ber affine Geometrie XI: L&ouml;sung des &lsquo;Vierpunktproblems&rsquo; von Sylvester aus der Theorie der geometrischen Wahrscheinlichkeiten,&rdquo; <i>Leipziger Berichte</i> 69 (1917) 436&ndash;453 &mdash; triangle minimises, ellipse maximises.</li>
+      <li>P. Valtr, &ldquo;Probability that n random points are in convex position,&rdquo; <i>Discrete Comput. Geom.</i> 13 (1995) 637&ndash;643 &mdash; parallelogram formula.</li>
+      <li>P. Valtr, &ldquo;The probability that n random points in a triangle are in convex position,&rdquo; <i>Combinatorica</i> 16 (1996) 567&ndash;573.</li>
+      <li>I. B&aacute;r&aacute;ny, &ldquo;Sylvester&rsquo;s question: the probability that n points are in convex position,&rdquo; <i>Ann. Probab.</i> 27 (1999) 2020&ndash;2034 &mdash; asymptotics for all convex bodies, affine perimeter, limit shape.</li>
+      <li>J.-F. Marckert, &ldquo;Probability that n random points in a disk are in convex position,&rdquo; <i>Braz. J. Probab. Stat.</i> 31 (2017) 320&ndash;337, arXiv:1402.3512.</li>
+      <li>H. J. Hilhorst, P. Calka, G. Schehr, &ldquo;Sylvester&rsquo;s question and the random acceleration process,&rdquo; <i>J. Stat. Mech.</i> (2008) P10010.</li>
+      <li>B. Efron, &ldquo;The convex hull of a random set of points,&rdquo; <i>Biometrika</i> 52 (1965) 331&ndash;343 &mdash; the identity linking hull-vertex counts to hull area.</li>
+      <li>A. Zinani, &ldquo;The expected volume of a tetrahedron whose vertices are chosen at random in the interior of a cube,&rdquo; <i>Monatsh. Math.</i> 139 (2003) 341&ndash;348.</li>
+      <li>J.-F. Marckert, S. Rahmani, &ldquo;Around Sylvester&rsquo;s question in the plane,&rdquo; <i>Mathematika</i> 67 (2021) 860&ndash;884 &mdash; the n = 5 extremal theorem.</li>
+      <li>H. A. Alikoski, &ldquo;&Uuml;ber das Sylvestersche Vierpunktproblem,&rdquo; <i>Ann. Acad. Sci. Fenn.</i> 51 (1939) &mdash; Sylvester&rsquo;s problem for regular polygons.</li>
+      <li>C. Buchta, &ldquo;Zufallspolygone in konvexen Vielecken,&rdquo; <i>J. reine angew. Math.</i> 347 (1984) &mdash; expected hull areas in the square and triangle; and &ldquo;An identity relating moments of functionals of convex hulls,&rdquo; <i>Discrete Comput. Geom.</i> 33 (2005) 125&ndash;142.</li>
+      <li>J.-F. Marckert, L. Morin, arXiv:2411.08456 (2024) &mdash; states the current status: n = 5 proved, n &ge; 6 open.</li>
+    </ol>
+    <p class="small">The full, verified reference list &mdash; with URLs, verification status per claim, and the discrepancies the adversarial verifiers turned up &mdash; is <span class="mono">LITERATURE.md</span> in the campaign folder. This page&rsquo;s reading list is the short version.</p>
+  </div>
+</div>
+
+<footer><div class="wrap">Built for the convex-position campaign, 2026-08-18. Everything numeric on this page is reproducible from <span class="mono">src/anchors.py</span> and <span class="mono">src/convex_position.py</span>.</div></footer>
+
+<script>
+(function(){
+  'use strict';
+  // ---------- exact anchors ----------
+  function fact(n){var r=1;for(var i=2;i<=n;i++)r*=i;return r;}
+  function comb(n,k){var r=1;for(var i=1;i<=k;i++){r=r*(n-k+i)/i;}return Math.round(r);}
+  function valtrSquare(n){var c=comb(2*n-2,n-1)/fact(n);return c*c;}
+  function valtrTriangle(n){return Math.pow(2,n)*fact(3*n-3)/(fact(2*n)*Math.pow(fact(n-1),3));}
+  var sylDisk=1-35/(12*Math.PI*Math.PI);
+  // literature/campaign disk values for n>=5 (filled by the campaign; null = pending)
+  var DISK = {4:{v:sylDisk,src:'exact'}, 5:{v:1-305/(48*Math.PI*Math.PI),se:0,src:'EXACT: 1 - 305/(48 pi^2) = 0.3561883 (Marckert 2017; re-derived here); MC 0.356188 +- 0.000034'}, 6:{v:1-(146400*Math.PI*Math.PI-473473)/(11520*Math.pow(Math.PI,4)),se:0,src:'EXACT (Marckert 2017): 1 - (146400 pi^2 - 473473)/(11520 pi^4) = 0.134309; MC 0.134330 +- 0.000024'}, 7:{v:1-(512400*Math.PI*Math.PI-2900611)/(23040*Math.pow(Math.PI,4)),se:0,src:'EXACT (Marckert 2017): 0.0390906; MC 0.039112 +- 0.000014'}, 8:{v:1-(62664108221+1721664000*Math.pow(Math.PI,4)-18670881600*Math.PI*Math.PI)/(48384000*Math.pow(Math.PI,6)),se:0,src:'EXACT (Marckert 2017): 0.0090343; MC 0.0090423 +- 0.0000067'}, 9:{v:0.001698025,se:2.9e-6,src:'campaign MC, 2e8 samples: 0.0016980 +- 0.0000029'}, 10:{v:0.000262035,se:1.1e-6,src:'campaign MC, 2e8 samples: 0.00026204 +- 0.0000011'}};
+  window.__DISK = DISK;
+
+  // ---------- geometry ----------
+  function hull(pts){ // Andrew monotone chain; returns indices in CCW order
+    var idx=pts.map(function(_,i){return i;});
+    idx.sort(function(a,b){return pts[a][0]-pts[b][0]||pts[a][1]-pts[b][1];});
+    function cross(o,a,b){return (pts[a][0]-pts[o][0])*(pts[b][1]-pts[o][1])-(pts[a][1]-pts[o][1])*(pts[b][0]-pts[o][0]);}
+    var lower=[];for(var i=0;i<idx.length;i++){while(lower.length>=2&&cross(lower[lower.length-2],lower[lower.length-1],idx[i])<=0)lower.pop();lower.push(idx[i]);}
+    var upper=[];for(var j=idx.length-1;j>=0;j--){while(upper.length>=2&&cross(upper[upper.length-2],upper[upper.length-1],idx[j])<=0)upper.pop();upper.push(idx[j]);}
+    lower.pop();upper.pop();return lower.concat(upper);
+  }
+  var SQ=[[0,0],[1,0],[1,1],[0,1]];
+  var TRI=[[0,0],[1,0],[0.5,Math.sqrt(3)/2]];
+  var PENT=[];for(var k=0;k<5;k++){var a=-Math.PI/2+2*Math.PI*k/5;PENT.push([Math.cos(a),Math.sin(a)]);}
+  function inTri(A,B,C){var u=Math.random(),v=Math.random();if(u+v>1){u=1-u;v=1-v;}return [A[0]+u*(B[0]-A[0])+v*(C[0]-A[0]),A[1]+u*(B[1]-A[1])+v*(C[1]-A[1])];}
+  var SAMPLERS={
+    square:function(){return [Math.random(),Math.random()];},
+    disk:function(){var r=Math.sqrt(Math.random()),t=2*Math.PI*Math.random();return [r*Math.cos(t),r*Math.sin(t)];},
+    triangle:function(){return inTri(TRI[0],TRI[1],TRI[2]);},
+    pentagon:function(){var i=Math.floor(Math.random()*5);return inTri([0,0],PENT[i],PENT[(i+1)%5]);}
+  };
+  function exactFor(body,n){
+    if(body==='square')return {v:valtrSquare(n),src:'Valtr 1995: [C(2n-2,n-1)/n!]^2'};
+    if(body==='triangle')return {v:valtrTriangle(n),src:'Valtr 1996: 2^n(3n-3)!/[(2n)!((n-1)!)^3]'};
+    if(body==='disk'){if(n===4)return {v:sylDisk,src:'Sylvester/Woolhouse: 1 - 35/(12 pi^2)'};var d=DISK[n];if(d&&d.v!==null)return {v:d.v,src:'no closed form known (Marckert 2017: recursion). Reference shown = '+d.src};return {v:null,src:'no closed form known (Marckert 2017 gives a recursion)'};}
+    if(body==='pentagon'){var w=2*Math.PI/5,cw=Math.cos(w),sw=Math.sin(w);if(n===4)return {v:1-(9*cw*cw+52*cw+44)/(9*25*sw*sw),src:'Alikoski 1939: 4/5 - 2 sqrt5/45'};if(n===5)return {v:1-5*(15*cw*cw+92*cw+76)/(36*25*sw*sw),src:'this campaign: 7/12 - 47 sqrt5/450 (Alikoski + identity II)'};return {v:null,src:'no exact value known'};}
+    return {v:null,src:''};
+  }
+  // ---------- plate 1 ----------
+  var cv=document.getElementById('cv'),ctx=cv.getContext('2d');
+  var bodySel=document.getElementById('body'),nr=document.getElementById('nrange'),nval=document.getElementById('nval');
+  var elThis=document.getElementById('thisSample'),elTrials=document.getElementById('trials'),elHits=document.getElementById('hits'),elP=document.getElementById('phat'),elEx=document.getElementById('exact'),elSrc=document.getElementById('exactSrc');
+  var trials=0,hits=0,running=false;
+  function css(name){return getComputedStyle(document.documentElement).getPropertyValue(name).trim();}
+  function toCanvas(body,p){var W=cv.width,H=cv.height,pad=28;
+    if(body==='disk'){var R=Math.min(W,H)/2-pad;return [W/2+p[0]*R,H/2-p[1]*R];}
+    if(body==='pentagon'){var R2=Math.min(W,H)/2-pad;return [W/2+p[0]*R2,H/2+p[1]*R2*0.98];}
+    if(body==='square'){var S=Math.min(W,H)-2*pad;return [(W-S)/2+p[0]*S,(H+S)/2-p[1]*S];}
+    var S2=Math.min(W/1.05,H/(Math.sqrt(3)/2))-2*pad;var ox=(W-S2)/2,oy=(H+S2*Math.sqrt(3)/2)/2;return [ox+p[0]*S2,oy-p[1]*S2];
+  }
+  function drawBody(body){ctx.strokeStyle=css('--rule');ctx.lineWidth=1.5;ctx.beginPath();
+    if(body==='disk'){var c=toCanvas(body,[0,0]),e=toCanvas(body,[1,0]);ctx.arc(c[0],c[1],e[0]-c[0],0,2*Math.PI);}
+    else{var V=body==='square'?SQ:body==='triangle'?TRI:PENT;for(var i=0;i<V.length;i++){var q=toCanvas(body,V[i]);if(i===0)ctx.moveTo(q[0],q[1]);else ctx.lineTo(q[0],q[1]);}ctx.closePath();}
+    ctx.stroke();}
+  var lastPts=null;
+  function drawSample(body,pts){ctx.clearRect(0,0,cv.width,cv.height);ctx.fillStyle=css('--surface');ctx.fillRect(0,0,cv.width,cv.height);drawBody(body);
+    var h=hull(pts);var onHull={};h.forEach(function(i){onHull[i]=true;});
+    ctx.strokeStyle=css('--accent');ctx.lineWidth=2;ctx.beginPath();for(var i=0;i<h.length;i++){var q=toCanvas(body,pts[h[i]]);if(i===0)ctx.moveTo(q[0],q[1]);else ctx.lineTo(q[0],q[1]);}ctx.closePath();ctx.stroke();
+    ctx.fillStyle=css('--accent-soft');ctx.globalAlpha=0.55;ctx.fill();ctx.globalAlpha=1;
+    for(var j=0;j<pts.length;j++){var c=toCanvas(body,pts[j]);
+      if(onHull[j]){ctx.fillStyle=css('--ink');ctx.beginPath();ctx.arc(c[0],c[1],5,0,2*Math.PI);ctx.fill();}
+      else{ctx.fillStyle=css('--bad');ctx.beginPath();ctx.arc(c[0],c[1],5,0,2*Math.PI);ctx.fill();ctx.strokeStyle=css('--bad');ctx.lineWidth=2;ctx.beginPath();ctx.arc(c[0],c[1],11,0,2*Math.PI);ctx.stroke();}}
+    return h.length===pts.length;}
+  function sampleOnce(body,n){var s=SAMPLERS[body],p=[];for(var i=0;i<n;i++)p.push(s());return p;}
+  function updateStats(){var body=bodySel.value,n=+nr.value;elTrials.textContent=trials.toLocaleString();elHits.textContent=hits.toLocaleString();
+    if(trials>0){var p=hits/trials,se=Math.sqrt(p*(1-p)/trials);elP.textContent=p.toFixed(4)+' \u00b1 '+se.toFixed(4);}else elP.textContent='\u2014';
+    var ex=exactFor(body,n);elEx.textContent=ex.v===null?'open':ex.v.toFixed(6);elSrc.textContent=ex.src;}
+  function newSample(){var body=bodySel.value,n=+nr.value;lastPts=sampleOnce(body,n);var ok=drawSample(body,lastPts);trials++;if(ok)hits++;elThis.textContent=ok?'convex position':'not convex';elThis.style.color=ok?css('--good'):css('--bad');updateStats();}
+  function resetTally(){trials=0;hits=0;updateStats();}
+  function run(total){if(running)return;running=true;var body=bodySel.value,n=+nr.value,done=0;document.getElementById('btnRun').disabled=true;
+    function step(){var chunk=Math.min(1500,total-done);for(var i=0;i<chunk;i++){var p=sampleOnce(body,n);trials++;if(hull(p).length===n)hits++;}done+=chunk;updateStats();
+      if(done<total){requestAnimationFrame(step);}else{running=false;document.getElementById('btnRun').disabled=false;if(lastPts)drawSample(body,lastPts);}}
+    requestAnimationFrame(step);}
+  bodySel.addEventListener('change',function(){resetTally();newSample();});
+  nr.addEventListener('input',function(){nval.textContent=nr.value;resetTally();newSample();});
+  document.getElementById('btnNew').addEventListener('click',newSample);
+  document.getElementById('btnRun').addEventListener('click',function(){run(20000);});
+  document.getElementById('btnReset').addEventListener('click',resetTally);
+  newSample();
+
+  // ---------- plate 2: chart ----------
+  var ch=document.getElementById('chart'),cx=ch.getContext('2d');
+  function drawChart(){var W=ch.width,H=ch.height,L=70,R=30,T=30,B=48;cx.clearRect(0,0,W,H);cx.fillStyle=css('--surface');cx.fillRect(0,0,W,H);
+    var ns=[4,5,6,7,8,9,10];var series=[
+      {name:'triangle (Valtr, exact)',col:css('--bad'),pts:ns.map(function(n){return [n,valtrTriangle(n)];})},
+      {name:'square (Valtr, exact)',col:css('--ink'),pts:ns.map(function(n){return [n,valtrSquare(n)];})},
+      {name:'disk (n=4..8 exact; n=9,10 campaign MC)',col:css('--accent'),pts:ns.map(function(n){var d=DISK[n];return [n,d&&d.v!==null?d.v:null];}).filter(function(q){return q[1]!==null;})}];
+    var ymin=1e-4,ymax=1;function X(n){return L+(n-4)/(10-4)*(W-L-R);}function Y(v){return T+(Math.log10(ymax)-Math.log10(v))/(Math.log10(ymax)-Math.log10(ymin))*(H-T-B);}
+    cx.strokeStyle=css('--grid');cx.lineWidth=1;cx.font='12px Cascadia Mono, SF Mono, Consolas, Menlo, monospace';cx.fillStyle=css('--muted');cx.textAlign='right';cx.textBaseline='middle';
+    [1,0.1,0.01,0.001,0.0001].forEach(function(v){var y=Y(v);cx.beginPath();cx.moveTo(L,y);cx.lineTo(W-R,y);cx.stroke();cx.fillText(v>=0.01?String(v):v.toExponential(0),L-8,y);});
+    cx.textAlign='center';cx.textBaseline='top';ns.forEach(function(n){var x=X(n);cx.beginPath();cx.moveTo(x,T);cx.lineTo(x,H-B);cx.stroke();cx.fillText('n = '+n,x,H-B+8);});
+    cx.font='600 12px Bahnschrift SemiCondensed, Bahnschrift, Avenir Next Condensed, Roboto Condensed, Arial Narrow, Arial, sans-serif';cx.textAlign='left';cx.fillText('P(n) log scale',L,8);
+    series.forEach(function(s,si){cx.strokeStyle=s.col;cx.fillStyle=s.col;cx.lineWidth=2;cx.beginPath();s.pts.forEach(function(q,i){var x=X(q[0]),y=Y(q[1]);if(i===0)cx.moveTo(x,y);else cx.lineTo(x,y);});cx.stroke();
+      s.pts.forEach(function(q){var x=X(q[0]),y=Y(q[1]);cx.beginPath();cx.arc(x,y,4.5,0,2*Math.PI);cx.fill();});
+      cx.font='600 13px Bahnschrift SemiCondensed, Bahnschrift, Avenir Next Condensed, Roboto Condensed, Arial Narrow, Arial, sans-serif';cx.textAlign='left';cx.textBaseline='middle';cx.fillText(s.name,L+16,T+16+si*18);
+      cx.beginPath();cx.arc(L+6,T+16+si*18,4,0,2*Math.PI);cx.fill();});
+  }
+  drawChart();
+  // redraw on theme change
+  var mq=window.matchMedia('(prefers-color-scheme: dark)');function rethem(){drawChart();if(lastPts)drawSample(bodySel.value,lastPts);}
+  if(mq.addEventListener)mq.addEventListener('change',rethem);else if(mq.addListener)mq.addListener(rethem);
+  new MutationObserver(rethem).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
+})();
+</script>
